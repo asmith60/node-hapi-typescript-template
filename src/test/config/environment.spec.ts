@@ -14,7 +14,7 @@ describe('Config', () => {
       delete process.env.PROTOCOL;
     });
     it('should return "0.0.0.0" if process.env.HOST is not set', () => {
-      const env = new Environment();
+      const env: Environment = new Environment();
 
       const expected: string = '0.0.0.0';
 
@@ -22,7 +22,7 @@ describe('Config', () => {
     });
 
     it('should return 8000 if process.env.PORT is not set', () => {
-      const env = new Environment();
+      const env: Environment = new Environment();
 
       const expected: number = 8000;
 
@@ -30,7 +30,7 @@ describe('Config', () => {
     });
 
     it('should return "http" if process.env.PROTOCOL is not set', () => {
-      const env = new Environment();
+      const env: Environment = new Environment();
 
       const expected: string = 'http';
 
