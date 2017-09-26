@@ -3,7 +3,6 @@ import { ServerConnectionInfo } from 'Hapi';
 export class Environment {
   host: string;
   port: number;
-
   protocol: ServerConnectionInfo['protocol'];
 
   constructor() {
