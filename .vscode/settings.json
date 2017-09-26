@@ -1,11 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
   "editor.formatOnSave": true,
-  "beautify.language": {
-    "js": {
-      "ext": ["js", "json", "ts"]
-    }
-  },
   "search.exclude": {
     "**/node_modules": true,
     "**/dist": true
