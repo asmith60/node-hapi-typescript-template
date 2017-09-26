@@ -30,6 +30,12 @@ docker build -t $ORG/$IMAGE_NAME:$TAG .
 npm run lint
 ```
 
+## Test
+
+```bash
+npm test
+```
+
 ## Run
 
 #### Development
