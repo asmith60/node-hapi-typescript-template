@@ -10,7 +10,8 @@
     "./node_modules/@types/mocha/index.d.ts",
     "./node_modules/@types/chai/index.d.ts",
     "./node_modules/@types/hapi/index.d.ts",
-    "./node_modules/@types/joi/index.d.ts"
+    "./node_modules/@types/joi/index.d.ts",
+    "./node_modules/@types/boom/index.d.ts"
   ],
   "include": [
     "src/**/*.ts"
