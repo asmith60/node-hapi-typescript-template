@@ -3,11 +3,18 @@
     "tslint-config-airbnb"
   ],
   "rules": {
+    "align": [
+      false,
+      "parameters"
+    ],
     "max-line-length": false,
     "strict-boolean-expressions": false,
-    "trailing-comma": [true, {
-      "multiline": "never",
-      "singleline": "never"
-    }]
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    ]
   }
 }

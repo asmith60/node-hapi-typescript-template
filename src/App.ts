@@ -1,7 +1,7 @@
-import { Environment } from './config/environment';
+import Environment from './config/Environment';
+import Plugins from './config/Plugins';
+import Routes from './config/Routes';
 import { Server } from 'Hapi';
-import * as Plugins from './config/plugins';
-import * as Routes from './config/routes';
 
 // Catch unhandling unexpected exceptions
 process.on('uncaughtException', (error: Error) => {
@@ -13,11 +13,11 @@ process.on('unhandledRejection', (reason: any) => {
   console.error(`unhandledRejection ${reason}`);
 });
 
+const env: Environment = new Environment();
+
+const server: Server = new Server();
+
 async function main(): Promise<void> {
-  const env: Environment = new Environment();
-
-  const server: Server = new Server();
-
   try {
     server.connection({
       host: env.host,
@@ -25,37 +25,33 @@ async function main(): Promise<void> {
     });
     server.info.protocol = env.protocol;
   } catch (e) {
-    console.error('Error creating server connection');
-    console.error(e);
-    process.exit(1);
+    throw Error(`Creating server connection: ${e.stack}`);
   }
 
   try {
-    await server.register(Plugins.get(env));
+    await server.register(Plugins());
   } catch (e) {
-    console.error('Error registering plugins');
-    console.error(e);
-    process.exit(1);
+    throw Error(`Registering plugins: ${e.stack}`);
   }
 
   try {
-    server.route(Routes.get());
+    server.route(Routes());
   } catch (e) {
-    console.error('Error creating routes');
-    console.error(e);
-    process.exit(1);
+    throw Error(`Creating routes: ${e.stack}`);
   }
 
   try {
     await server.start();
   } catch (e) {
-    console.error('Error starting server');
-    console.error(e);
-    process.exit(1);
+    throw Error(`Starting server: ${e.stack}`);
   }
-
-  console.info(`Server started at: ${server.info.uri}`);
-  console.info(`API docs available at: ${server.info.uri}/documentation`);
 }
 
-main();
+// Execute main function
+main().then(() => {
+  console.info(`Server started at: ${server.info.uri}`);
+  console.info(`API docs available at: ${server.info.uri}/documentation`);
+}).catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

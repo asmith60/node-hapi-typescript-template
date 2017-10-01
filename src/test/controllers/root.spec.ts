@@ -1,10 +1,10 @@
-import { Environment } from '../../config/environment';
+import Environment from '../../config/Environment';
 import { assert } from 'chai';
 import {
   Server,
   InjectedResponseObject
 } from 'Hapi';
-import * as Routes from '../../config/routes';
+import Routes from '../../config/Routes';
 
 describe('Controllers', () => {
   describe('root', () => {
@@ -13,7 +13,7 @@ describe('Controllers', () => {
 
       const server: Server = new Server();
       server.connection();
-      server.route(Routes.get());
+      server.route(Routes());
 
       const res: InjectedResponseObject = await server.inject({
         method: 'GET',

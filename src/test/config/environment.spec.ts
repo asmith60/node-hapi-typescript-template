@@ -1,4 +1,4 @@
-import { Environment } from '../../config/environment';
+import Environment from '../../config/Environment';
 import { assert } from 'chai';
 
 describe('Config', () => {
@@ -72,7 +72,7 @@ describe('Config', () => {
 
       assert.throw(() => {
         new Environment();
-      },           Error);
+      }, Error);
     });
   });
 });

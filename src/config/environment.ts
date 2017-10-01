@@ -1,6 +1,6 @@
 import { ServerConnectionInfo } from 'Hapi';
 
-export class Environment {
+export default class Environment {
   host: string;
   port: number;
   protocol: ServerConnectionInfo['protocol'];

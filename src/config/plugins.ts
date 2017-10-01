@@ -1,7 +1,8 @@
 import { PluginRegistrationObject } from 'Hapi';
-import { Environment } from './environment';
+import Environment from './Environment';
 
-export function get(env: Environment): PluginRegistrationObject<any>[] {
+const env: Environment = new Environment();
+export default function get(): PluginRegistrationObject<any>[] {
   return [{
     register: require('inert')
   }, {

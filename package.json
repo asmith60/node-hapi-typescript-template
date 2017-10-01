@@ -2,7 +2,7 @@
   "name": "node-hapi-typescript-template",
   "version": "1.0.0",
   "description": "node hapi typescript template",
-  "main": "dist/index.js",
+  "main": "dist/App.js",
   "scripts": {
     "build": "node_modules/typescript/bin/tsc",
     "dev": "npm run build && npm start",
@@ -11,8 +11,8 @@
     "dev:debug:watch": "node_modules/.bin/nodemon -e ts -w ./src -x npm run dev:debug",
     "test": "npm run build && node_modules/mocha/bin/mocha dist/**/*.spec.js",
     "lint": "node_modules/tslint/bin/tslint -p . -c tslint.json",
-    "start": "node dist/index.js",
-    "debug": "node inspect dist/index.js"
+    "start": "node dist/App.js",
+    "debug": "node inspect dist/App.js"
   },
   "repository": {
     "type": "git",
