@@ -5,15 +5,12 @@ import { Server } from 'Hapi';
 
 // Catch unhandling unexpected exceptions
 process.on('uncaughtException', (e: Error) => {
-  console.error('Error: uncaughtException');
-  console.error(e.message);
-  console.error(e.stack);
+  console.error('Error: uncaughtException', e.message, e.stack);
 });
 
 // Catch unhandling rejected promises
 process.on('unhandledRejection', (reason: any) => {
-  console.error('Error: unhandledRejection');
-  console.error(reason);
+  console.error('Error: unhandledRejection', reason);
 });
 
 const env: Environment = new Environment();
@@ -59,7 +56,6 @@ main().then(() => {
   console.info(`Server started at: ${server.info.uri}`);
   console.info(`API docs available at: ${server.info.uri}/documentation`);
 }).catch((e) => {
-  console.error(e.message);
-  console.error(e.stack);
+  console.error(e.message, e.stack);
   process.exit(1);
 });
