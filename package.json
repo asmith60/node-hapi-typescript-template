@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "boom": "5.2.0",
-    "hapi": "16.6.0",
+    "hapi": "16.6.2",
     "hapi-swagger": "7.8.1",
     "inert": "4.2.1",
     "joi": "11.0.3",
