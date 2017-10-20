@@ -4,13 +4,16 @@ import Routes from './config/Routes';
 import { Server } from 'Hapi';
 
 // Catch unhandling unexpected exceptions
-process.on('uncaughtException', (error: Error) => {
-  console.error(`uncaughtException ${error.message}`);
+process.on('uncaughtException', (e: Error) => {
+  console.error('Error: uncaughtException');
+  console.error(e.message);
+  console.error(e.stack);
 });
 
 // Catch unhandling rejected promises
 process.on('unhandledRejection', (reason: any) => {
-  console.error(`unhandledRejection ${reason}`);
+  console.error('Error: unhandledRejection');
+  console.error(reason);
 });
 
 const env: Environment = new Environment();
