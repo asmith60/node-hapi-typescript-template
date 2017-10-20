@@ -1,9 +1,6 @@
 import Environment from '../../config/Environment';
 import { assert } from 'chai';
-import {
-  Server,
-  InjectedResponseObject
-} from 'Hapi';
+import { Server, InjectedResponseObject } from 'Hapi';
 import Routes from '../../config/Routes';
 
 describe('Controllers', () => {

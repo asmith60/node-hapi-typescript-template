@@ -25,25 +25,29 @@ async function main(): Promise<void> {
     });
     server.info.protocol = env.protocol;
   } catch (e) {
-    throw Error(`Creating server connection: ${e.stack}`);
+    console.error('Error: Creating server connection');
+    throw e;
   }
 
   try {
     await server.register(Plugins());
   } catch (e) {
-    throw Error(`Registering plugins: ${e.stack}`);
+    console.error('Error: Registering plugins');
+    throw e;
   }
 
   try {
     server.route(Routes());
   } catch (e) {
-    throw Error(`Creating routes: ${e.stack}`);
+    console.error('Error: Creating routes');
+    throw e;
   }
 
   try {
     await server.start();
   } catch (e) {
-    throw Error(`Starting server: ${e.stack}`);
+    console.error('Error: Starting server');
+    throw e;
   }
 }
 
@@ -52,6 +56,7 @@ main().then(() => {
   console.info(`Server started at: ${server.info.uri}`);
   console.info(`API docs available at: ${server.info.uri}/documentation`);
 }).catch((e) => {
-  console.error(e);
+  console.error(e.message);
+  console.error(e.stack);
   process.exit(1);
 });
