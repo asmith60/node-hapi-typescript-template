@@ -32,8 +32,16 @@ npm run lint
 
 ## Test
 
+#### Locally
+
 ```bash
 npm test
+```
+
+#### Docker
+
+```bash
+npm run docker:test
 ```
 
 ## Run
@@ -44,14 +52,22 @@ npm test
 npm run dev
 ```
 
-#### Debug
+#### Production
+
+```bash
+npm start
+```
+
+## Debug
+
+#### Locally
 
 ```bash
 npm run dev:debug
 ```
 
-#### Production
+#### Debug in Docker
 
 ```bash
-npm start
+npm run docker:debug
 ```
