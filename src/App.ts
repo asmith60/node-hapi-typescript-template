@@ -1,7 +1,7 @@
 import Environment from './config/Environment';
 import Plugins from './config/Plugins';
 import Routes from './config/Routes';
-import { Server } from 'Hapi';
+import { Server } from 'hapi';
 
 // Catch unhandling unexpected exceptions
 process.on('uncaughtException', (e: Error) => {

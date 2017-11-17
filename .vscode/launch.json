@@ -1,0 +1,50 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch via Node",
+      "preLaunchTask": "tsc-watch",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "debug"
+      ],
+      "port": 9222,
+      "restart": true,
+      "timeout": 30000,
+      "localRoot": "${workspaceRoot}",
+      "outFiles": [
+        "${workspaceRoot}/dist/**/*.js"
+      ],
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch via Docker",
+      "preLaunchTask": "tsc-watch",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "docker:debug"
+      ],
+      "port": 9222,
+      "restart": true,
+      "timeout": 30000,
+      "localRoot": "${workspaceRoot}",
+      "remoteRoot": "/usr/src/app",
+      "outFiles": [
+        "${workspaceRoot}/dist/**/*.js"
+      ],
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

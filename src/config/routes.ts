@@ -1,4 +1,4 @@
-import { RouteConfiguration } from 'Hapi';
+import { RouteConfiguration } from 'hapi';
 import * as Root from '../controllers/root';
 
 export default function get(): RouteConfiguration[] {

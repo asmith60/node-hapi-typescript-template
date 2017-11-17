@@ -1,4 +1,4 @@
-import { ServerConnectionInfo } from 'Hapi';
+import { ServerConnectionInfo } from 'hapi';
 
 export default class Environment {
   host: string;

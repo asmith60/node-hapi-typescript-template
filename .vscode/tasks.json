@@ -1,6 +1,7 @@
 {
   "version": "2.0.0",
-  "tasks": [{
+  "tasks": [
+    {
       "type": "npm",
       "script": "build",
       "group": {
@@ -15,6 +16,13 @@
         "kind": "test",
         "isDefault": true
       }
+    },
+    {
+      "type": "npm",
+      "label": "tsc-watch",
+      "script": "build:watch",
+      "isBackground": true,
+      "problemMatcher": "$tsc-watch"
     }
   ]
 }

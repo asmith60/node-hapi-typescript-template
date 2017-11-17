@@ -1,4 +1,4 @@
-import { PluginRegistrationObject } from 'Hapi';
+import { PluginRegistrationObject } from 'hapi';
 import Environment from './Environment';
 
 const env: Environment = new Environment();

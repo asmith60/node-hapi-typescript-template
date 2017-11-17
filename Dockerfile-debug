@@ -1,0 +1,11 @@
+FROM node:8.5.0-alpine
+
+WORKDIR /usr/src/app
+
+EXPOSE 8000
+
+EXPOSE 9222
+
+ENTRYPOINT ["npm"]
+
+CMD ["start"]

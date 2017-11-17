@@ -4,15 +4,18 @@
   "description": "node hapi typescript template",
   "main": "dist/App.js",
   "scripts": {
-    "build": "node_modules/typescript/bin/tsc",
+    "build": "node_modules/.bin/tsc",
+    "build:watch": "node_modules/.bin/tsc -w",
     "dev": "npm run build && npm start",
     "dev:watch": "node_modules/.bin/nodemon -e ts -w ./src -x npm run dev",
     "dev:debug": "npm run build && npm run debug",
-    "dev:debug:watch": "node_modules/.bin/nodemon -e ts -w ./src -x npm run dev:debug",
-    "test": "npm run build && node_modules/mocha/bin/mocha dist/**/*.spec.js",
-    "lint": "node_modules/tslint/bin/tslint -p . -c tslint.json",
-    "start": "node dist/App.js",
-    "debug": "node inspect dist/App.js"
+    "test": "node_modules/.bin/mocha dist/**/*.spec.js",
+    "lint": "node_modules/.bin/tslint -p . -c tslint.json",
+    "debug": "node_modules/.bin/nodemon --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/App.js",
+    "docker": "docker-compose down --rmi all && docker-compose up --build",
+    "docker:test": "docker-compose -f docker-compose-debug.yml down --rmi all && docker-compose -f docker-compose-debug.yml run app test",
+    "docker:debug": "docker-compose -f docker-compose-debug.yml down --rmi all && docker-compose -f docker-compose-debug.yml up --build",
+    "start": "node dist/App.js"
   },
   "repository": {
     "type": "git",
