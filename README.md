@@ -1,5 +1,6 @@
 # Node Hapi.js Typescript Template
 
+
 ## Build
 
 #### Development
