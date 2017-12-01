@@ -20,7 +20,7 @@ describe('Config', () => {
 
       const env: Environment = new Environment();
 
-      const expected: string = process.env.HOST;
+      const expected: string | undefined = process.env.HOST;
 
       assert.equal(env.host, expected);
     });
@@ -40,7 +40,7 @@ describe('Config', () => {
 
       const env: Environment = new Environment();
 
-      const expected: string = process.env.PROTOCOL;
+      const expected: string | undefined = process.env.PROTOCOL;
 
       assert.equal(env.protocol, expected);
     });

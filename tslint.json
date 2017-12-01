@@ -9,6 +9,7 @@
     ],
     "max-line-length": false,
     "strict-boolean-expressions": false,
+    "strict-type-predicates": true,
     "trailing-comma": [
       true,
       {

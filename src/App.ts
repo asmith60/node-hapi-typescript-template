@@ -23,7 +23,11 @@ async function main(): Promise<void> {
       host: env.host,
       port: env.port
     });
-    server.info.protocol = env.protocol;
+    if (server.info) {
+      server.info.protocol = env.protocol;
+    } else {
+      throw new Error('Server info is null');
+    }
   } catch (e) {
     console.error('Error: Creating server connection');
     throw e;
@@ -53,8 +57,8 @@ async function main(): Promise<void> {
 
 // Execute main function
 main().then(() => {
-  console.info(`Server started at: ${server.info.uri}`);
-  console.info(`API docs available at: ${server.info.uri}/documentation`);
+  console.info(`Server started at: ${server.info!.uri}`);
+  console.info(`API docs available at: ${server.info!.uri}/documentation`);
 }).catch((e) => {
   console.error(e.message, e.stack);
   process.exit(1);
