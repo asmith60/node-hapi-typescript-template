@@ -2,6 +2,9 @@
   "extends": [
     "tslint-config-airbnb"
   ],
+  "ignoreDefinitionFiles": false,
+  "autoFixOnSave": true,
+  "exclude": "**/node_modules/**/*",
   "rules": {
     "align": [
       false,
@@ -9,7 +12,6 @@
     ],
     "max-line-length": false,
     "strict-boolean-expressions": false,
-    "strict-type-predicates": true,
     "trailing-comma": [
       true,
       {

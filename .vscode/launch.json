@@ -4,8 +4,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via Node",
-      "preLaunchTask": "tsc-watch",
+      "name": "Launch in Node",
+      "preLaunchTask": "webpack-watch",
       "cwd": "${workspaceRoot}",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
@@ -13,11 +13,13 @@
         "debug"
       ],
       "port": 9222,
+      "protocol": "inspector",
       "restart": true,
+      "stopOnEntry": true,
       "timeout": 30000,
       "localRoot": "${workspaceRoot}",
       "outFiles": [
-        "${workspaceRoot}/dist/**/*.js"
+        "${workspaceRoot}/dist/*.js"
       ],
       "console": "integratedTerminal",
       "sourceMaps": true,
@@ -26,8 +28,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via Docker",
-      "preLaunchTask": "tsc-watch",
+      "name": "Launch in Docker",
+      "preLaunchTask": "webpack-watch",
       "cwd": "${workspaceRoot}",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
@@ -35,12 +37,14 @@
         "docker:debug"
       ],
       "port": 9222,
+      "protocol": "inspector",
       "restart": true,
+      "stopOnEntry": true,
       "timeout": 30000,
       "localRoot": "${workspaceRoot}",
       "remoteRoot": "/usr/src/app",
       "outFiles": [
-        "${workspaceRoot}/dist/**/*.js"
+        "${workspaceRoot}/dist/*.js"
       ],
       "console": "integratedTerminal",
       "sourceMaps": true,

@@ -1,0 +1,69 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+  unit-test:
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: mkdir -p ./artifacts/junit/mocha
+      - run:
+          environment:
+            MOCHA_FILE: artifacts/junit/mocha/test-results.xml
+          command: npm run test:junit
+          when: always
+      - store_test_results:
+          path: ./artifacts/junit
+      - store_artifacts:
+          path: ./artifacts/junit
+  lint-test:
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          command: npm run lint
+  security-test:
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          command: npm run test:security
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build
+      - unit-test:
+          requires:
+            - build
+      - lint-test:
+          requires:
+            - build
+      - security-test:
+          requires:
+            - build

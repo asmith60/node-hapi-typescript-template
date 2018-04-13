@@ -1,25 +1,11 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "target": "es6",
     "module": "commonjs",
-    "outDir": "dist",
     "strictNullChecks": true,
     "sourceMap": true
   },
-  "files": [
-    "./node_modules/@types/node/index.d.ts",
-    "./node_modules/@types/mocha/index.d.ts",
-    "./node_modules/@types/chai/index.d.ts",
-    "./node_modules/@types/hapi/index.d.ts",
-    "./node_modules/@types/joi/index.d.ts",
-    "./node_modules/@types/boom/index.d.ts",
-    "./node_modules/@types/inert/index.d.ts",
-    "./node_modules/@types/vision/index.d.ts"
-  ],
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
   "exclude": [
     "node_modules"
   ]

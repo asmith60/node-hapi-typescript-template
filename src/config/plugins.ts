@@ -1,21 +1,20 @@
-import { PluginRegistrationObject } from 'hapi';
-import Environment from './Environment';
+import { ServerRegisterPluginObject } from 'hapi';
+import { config } from './environment';
 
-const env: Environment = new Environment();
-export default function get(): PluginRegistrationObject<any>[] {
-  return [{
-    register: require('inert')
+export const plugins: ServerRegisterPluginObject<any>[] = [
+  {
+    plugin: require('inert')
   }, {
-    register: require('vision')
+    plugin: require('vision')
   }, {
-    register: require('hapi-swagger'),
+    plugin: require('hapi-swagger'),
     options: {
       info: {
         title: 'API Documentation',
         description: 'Description goes here',
         version: '1.0.0'
       },
-      schemes: [env.protocol]
+      schemes: [config.get('protocol')]
     }
-  }];
-}
+  }
+];

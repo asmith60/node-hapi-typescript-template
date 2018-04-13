@@ -19,10 +19,21 @@
     },
     {
       "type": "npm",
-      "label": "tsc-watch",
+      "label": "webpack-watch",
       "script": "build:watch",
       "isBackground": true,
-      "problemMatcher": "$tsc-watch"
+      "problemMatcher": {
+        "owner": "custom",
+        "fileLocation": "relative",
+        "pattern": {
+          "regexp": ".*",
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Webpack is watching the files…",
+          "endsPattern": "Webpack: finished building"
+        }
+      }
     }
   ]
 }

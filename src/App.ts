@@ -1,65 +1,72 @@
-import Environment from './config/Environment';
-import Plugins from './config/Plugins';
-import Routes from './config/Routes';
+import { config } from './config/environment';
+import { logger } from './lib/Logger';
+import { RethrownError } from './lib/RethrownError';
+import { globalRouteOptions } from './config/gobalRouteOptions';
+import { hooks } from './hook';
+import { plugins } from './config/plugins';
+import { routes } from './route';
 import { Server } from 'hapi';
 
-// Catch unhandling unexpected exceptions
+logger.setContext('init');
+
+// Catch unhandled uncaught exceptions
 process.on('uncaughtException', (e: Error) => {
-  console.error('Error: uncaughtException', e.message, e.stack);
+  logger.error(`uncaughtException: ${e.stack}`);
 });
 
-// Catch unhandling rejected promises
+// Catch unhandled rejected promises
 process.on('unhandledRejection', (reason: any) => {
-  console.error('Error: unhandledRejection', reason);
+  logger.error(`unhandledRejection: ${reason}`);
 });
 
-const env: Environment = new Environment();
-
-const server: Server = new Server();
+let server: Server;
 
 async function main(): Promise<void> {
   try {
-    server.connection({
-      host: env.host,
-      port: env.port
+    server = new Server({
+      host: config.get('host'),
+      port: config.get('port'),
+      routes: globalRouteOptions
     });
     if (server.info) {
-      server.info.protocol = env.protocol;
+      server.info.protocol = config.get('protocol');
     } else {
       throw new Error('Server info is null');
     }
   } catch (e) {
-    console.error('Error: Creating server connection');
-    throw e;
+    throw new RethrownError('Problem creating server', e);
   }
 
   try {
-    await server.register(Plugins());
+    await server.register(plugins);
   } catch (e) {
-    console.error('Error: Registering plugins');
-    throw e;
+    throw new RethrownError('Problem registering plugins', e);
   }
 
   try {
-    server.route(Routes());
+    await server.ext(hooks);
   } catch (e) {
-    console.error('Error: Creating routes');
-    throw e;
+    throw new RethrownError('Problem creating lifecycle hooks', e);
+  }
+
+  try {
+    server.route(routes);
+  } catch (e) {
+    throw new RethrownError('Problem creating routes', e);
   }
 
   try {
     await server.start();
   } catch (e) {
-    console.error('Error: Starting server');
-    throw e;
+    throw new RethrownError('Problem starting server', e);
   }
 }
 
 // Execute main function
 main().then(() => {
-  console.info(`Server started at: ${server.info!.uri}`);
-  console.info(`API docs available at: ${server.info!.uri}/documentation`);
+  logger.info(`Server started at: ${server.info.uri}`);
+  logger.info(`API docs available at: ${server.info.uri}/documentation`);
 }).catch((e) => {
-  console.error(e.message, e.stack);
+  logger.fatal(e.stack);
   process.exit(1);
 });

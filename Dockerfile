@@ -1,4 +1,6 @@
-FROM node:8.5.0-alpine
+FROM node:9.11-alpine
+
+RUN apk update && apk add python make
 
 WORKDIR /usr/src/app
 

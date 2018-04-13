@@ -1,6 +1,5 @@
 # Node Hapi.js Typescript Template
 
-
 ## Build
 
 #### Development
@@ -10,19 +9,10 @@ npm install
 npm run build
 ```
 
-#### Production
-
-```bash
-npm install --production
-npm run build
-```
-
 #### Docker
 
 ```bash
-npm install
-npm run build
-docker build -t $ORG/$IMAGE_NAME:$TAG .
+npm run docker:build
 ```
 
 ## Lint
@@ -53,6 +43,12 @@ npm run docker:test
 npm run dev
 ```
 
+#### Docker
+
+```bash
+npm run docker
+```
+
 #### Production
 
 ```bash
@@ -61,14 +57,4 @@ npm start
 
 ## Debug
 
-#### Locally
-
-```bash
-npm run dev:debug
-```
-
-#### Debug in Docker
-
-```bash
-npm run docker:debug
-```
+Use VSCode integration
