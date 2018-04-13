@@ -11,7 +11,7 @@
     "dev:watch": "node_modules/.bin/nodemon -e ts -w ./src -x npm run dev",
     "dev:debug": "npm run build && npm run debug",
     "test": "export NODE_ENV=test && npm run test:build && node_modules/.bin/mocha dist.test/*.test.js",
-    "test:junit": "npm run test:build && node_modules/.bin/mocha .dist.test/*.test.js --reporter mocha-junit-reporter",
+    "test:junit": "export NODE_ENV=test && npm run test:build && node_modules/.bin/mocha dist.test/*.test.js --reporter mocha-junit-reporter",
     "test:build": "node_modules/.bin/webpack-cli test/**/*.test.ts -o dist.test/main.bundle.test.js",
     "test:security": "node_modules/.bin/nsp check --threshold 5",
     "lint": "node_modules/.bin/tslint -p . -c tslint.json",
