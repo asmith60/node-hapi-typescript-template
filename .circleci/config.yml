@@ -24,10 +24,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: mkdir -p ./artifacts/junit/mocha
       - run:
-          environment:
-            MOCHA_FILE: artifacts/junit/mocha/test-results.xml
           command: npm run test:junit
           when: always
       - store_test_results:
