@@ -15,7 +15,7 @@
     "test:build": "node_modules/.bin/webpack-cli test/**/*.test.ts -o dist.test/main.bundle.test.js",
     "test:security": "node_modules/.bin/nsp check --threshold 5",
     "lint": "node_modules/.bin/tslint -p . -c tslint.json",
-    "lint:junit": "mkdir -p artifacts/junit/tslint && node_modules/.bin/tslint -p . -c tslint.json -t junit | tee artifacts/junit/tslint/lint-test-results.xml",
+    "lint:junit": "mkdir -p artifacts/junit/tslint && node_modules/.bin/tslint -p . -c tslint.json -t junit >> artifacts/junit/tslint/lint-test-results.xml",
     "debug": "node_modules/.bin/nodemon --watch ./dist --inspect-brk=0.0.0.0:9222 --nolazy ./dist/main.bundle.js",
     "docker": "npm run docker:build && docker run --rm -it -e NODE_ENV=development -p 8000:8000 asmith60/node-hapi-typescript-template",
     "docker:build": "docker build -t asmith60/node-hapi-typescript-template .",
