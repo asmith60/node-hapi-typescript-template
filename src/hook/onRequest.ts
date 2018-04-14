@@ -5,7 +5,11 @@ export const onRequest: ServerExtEventsRequestObject = {
   type: 'onRequest',
   method: (request, h) => {
     logger.setContext(request.info.id);
-    logger.debug(`Begin: ${request.method.toUpperCase()} ${request.path}`);
+    if (request.path !== '/monitor/liveness' && request.path !== '/monitor/readiness') {
+      logger.info(`Begin: ${request.method.toUpperCase()} ${request.path}`);
+    } else {
+      logger.debug(`Begin: ${request.method.toUpperCase()} ${request.path}`);
+    }
     logger.debug('Metadata:');
     logger.debug(request.info);
     if (request.headers && Object.keys(request.headers).length !== 0) {

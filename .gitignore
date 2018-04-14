@@ -3,3 +3,4 @@ dist
 dist.test
 npm-debug.log
 env.json
+test-results.xml
