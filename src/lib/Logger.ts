@@ -17,7 +17,7 @@ export class Logger {
   }
 
   public fatal(message: any): void {
-    this.bunyanLogger.fatal({ message: message });
+    this.bunyanLogger.fatal({ message });
   }
 
   public error(message: any): void {

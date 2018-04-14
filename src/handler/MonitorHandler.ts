@@ -22,7 +22,6 @@ class MonitorHandler extends BaseHandler {
   }
 }
 
-//comment that fails linter
 export const liveness = async (request: Request, h: ResponseToolkit): Promise<models.MonitorResponse> => {
   try {
     return await new MonitorHandler(request, h).liveness();
