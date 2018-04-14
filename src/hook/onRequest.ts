@@ -5,7 +5,7 @@ export const onRequest: ServerExtEventsRequestObject = {
   type: 'onRequest',
   method: (request, h) => {
     logger.setContext(request.info.id);
-    if (request.path !== '/monitor/liveness' && request.path !== '/monitor/readiness') {
+    if (request.path !== '/monitor/liveness' && request.path !== '/monitor/readiness' && !request.path.includes('swagger')) {
       logger.info(`Begin: ${request.method.toUpperCase()} ${request.path}`);
     } else {
       logger.debug(`Begin: ${request.method.toUpperCase()} ${request.path}`);

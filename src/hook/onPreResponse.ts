@@ -33,10 +33,10 @@ export const onPreResponse: ServerExtEventsRequestObject = {
         logger.debug(response.statusCode);
       }
     }
-    if (request.path !== '/monitor/liveness' && request.path !== '/monitor/readiness') {
-      logger.info(`End ${request.method.toUpperCase()} ${request.path}`);
+    if (request.path !== '/monitor/liveness' && request.path !== '/monitor/readiness' && !request.path.includes('swagger')) {
+      logger.info(`End: ${request.method.toUpperCase()} ${request.path}`);
     } else {
-      logger.debug(`End ${request.method.toUpperCase()} ${request.path}`);
+      logger.debug(`End: ${request.method.toUpperCase()} ${request.path}`);
     }
     return h.continue;
   }

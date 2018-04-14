@@ -1,13 +1,18 @@
 import { ServerRegisterPluginObject } from 'hapi';
 import { config } from './environment';
+import * as hapiSwagger from 'hapi-swagger';
+import * as inert from 'inert';
+import * as vision from 'vision';
 
 export const plugins: ServerRegisterPluginObject<any>[] = [
   {
-    plugin: require('inert')
-  }, {
-    plugin: require('vision')
-  }, {
-    plugin: require('hapi-swagger'),
+    plugin: vision
+  },
+  {
+    plugin: inert
+  },
+  {
+    plugin: hapiSwagger,
     options: {
       info: {
         title: 'API Documentation',
