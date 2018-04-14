@@ -9,7 +9,7 @@ describe('EnvironmentConfig', () => {
   });
 
   it('returns 8000 if process.env.PORT is not set', () => {
-    const expected: number = 8000;
+    const expected: number = 9000;
 
     expect(config.get('port')).to.equal(expected);
   });

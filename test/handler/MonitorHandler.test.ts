@@ -19,7 +19,7 @@ describe('MonitorHandler', () => {
     it('resolves with true status', async () => {
       const value: models.MonitorResponse = await monitorHandler.readiness(<Request>{}, <ResponseToolkit>{});
       const expected: models.MonitorResponse = {
-        status: true
+        status: false
       };
 
       expect(value).to.deep.equal(expected);
