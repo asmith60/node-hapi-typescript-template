@@ -39,7 +39,11 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: npm run lint
+          command: npm run lint:junit
+      - store_test_results:
+          path: ./artifacts/junit
+      - store_artifacts:
+          path: ./artifacts/junit
   security-test:
     docker:
       - image: circleci/node:9.11
