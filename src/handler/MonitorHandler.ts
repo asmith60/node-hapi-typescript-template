@@ -24,7 +24,7 @@ class MonitorHandler extends BaseHandler {
 
 export const liveness = async (request: Request, h: ResponseToolkit): Promise<models.MonitorResponse> => {
   try {
-    return new MonitorHandler(request, h).liveness();
+    return await new MonitorHandler(request, h).liveness();
   } catch (e) {
     throw e;
   }
@@ -32,7 +32,7 @@ export const liveness = async (request: Request, h: ResponseToolkit): Promise<mo
 
 export const readiness = async (request: Request, h: ResponseToolkit): Promise<models.MonitorResponse> => {
   try {
-    return new MonitorHandler(request, h).readiness();
+    return await new MonitorHandler(request, h).readiness();
   } catch (e) {
     throw e;
   }
