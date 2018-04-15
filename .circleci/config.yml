@@ -13,10 +13,15 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run:
+          environment:
+            - NODE_ENV: production
+          command: npm run build
       - persist_to_workspace:
           root: .
           paths:
             - node_modules
+            - dist
   unit-test:
     docker:
       - image: circleci/node:9.11

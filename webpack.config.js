@@ -1,10 +1,11 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const mode = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod' ? 'production' : 'development';
+const isProd = mode === 'production';
 
 module.exports = {
   entry: './src/App.ts',
-  devtool: "cheap-module-eval-source-map",
+  devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
   mode: mode,
   target: 'node',
   externals: [nodeExternals()],
