@@ -1,6 +1,6 @@
 import { logger } from '../lib/Logger';
 import { Request, ResponseToolkit } from 'hapi';
-import * as Boom from 'Boom';
+import * as Boom from 'boom';
 import { Rethrow, ExtendedError } from '../lib/ExtendedError';
 
 export abstract class BaseHandler {
