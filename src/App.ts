@@ -1,6 +1,6 @@
 import { config } from './config/environment';
 import { logger } from './lib/Logger';
-import { RethrownError } from './lib/RethrownError';
+import { Rethrow } from './lib/ExtendedError';
 import { globalRouteOptions } from './config/gobalRouteOptions';
 import { hooks } from './hook';
 import { plugins } from './config/plugins';
@@ -34,31 +34,31 @@ async function main(): Promise<void> {
       throw new Error('Server info is null');
     }
   } catch (e) {
-    throw new RethrownError('Problem creating server', e);
+    throw new Rethrow('Problem creating server', e);
   }
 
   try {
     await server.register(plugins);
   } catch (e) {
-    throw new RethrownError('Problem registering plugins', e);
+    throw new Rethrow('Problem registering plugins', e);
   }
 
   try {
     await server.ext(hooks);
   } catch (e) {
-    throw new RethrownError('Problem creating lifecycle hooks', e);
+    throw new Rethrow('Problem creating lifecycle hooks', e);
   }
 
   try {
     server.route(routes);
   } catch (e) {
-    throw new RethrownError('Problem creating routes', e);
+    throw new Rethrow('Problem creating routes', e);
   }
 
   try {
     await server.start();
   } catch (e) {
-    throw new RethrownError('Problem starting server', e);
+    throw new Rethrow('Problem starting server', e);
   }
 }
 

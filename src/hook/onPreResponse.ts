@@ -6,20 +6,24 @@ export const onPreResponse: ServerExtEventsRequestObject = {
   method: (request, h) => {
     if (request.response && (<any>request.response).isBoom) {
       const response: any = <any>request.response;
+      logger.debug('Error Response:');
+      logger.debug(response);
       if (response.output && response.output.payload && Object.keys(response.output.payload).length !== 0) {
-        logger.debug(`Error Response Payload:`);
-        logger.debug(response.output.payload);
+        logger.error(`Error Response Payload:`);
+        logger.error(response.output.payload);
       }
       if (response.output && response.output.headers && Object.keys(response.output.headers).length !== 0) {
-        logger.debug(`Error Response Headers:`);
-        logger.debug(response.output.headers);
+        logger.error(`Error Response Headers:`);
+        logger.error(response.output.headers);
       }
       if ((<any>request.response).output && (<any>request.response).output.statusCode) {
-        logger.debug(`Error Response Status Code:`);
-        logger.debug(response.output.statusCode);
+        logger.error(`Error Response Status Code:`);
+        logger.error(response.output.statusCode);
       }
     } else {
       const response: ResponseObject = <ResponseObject>request.response;
+      logger.debug('Error Response:');
+      logger.debug(response);
       if (response.source) {
         logger.debug('Response Payload:');
         logger.debug(response.source);
