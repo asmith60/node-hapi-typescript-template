@@ -51,13 +51,12 @@ export class Rethrow extends ExtendedError {
 }
 
 export interface ExtendedErrorOptions {
-  id?: string;
   http?: ExtendedErrorOptionsHttp;
 }
 
 interface ExtendedErrorOptionsHttp {
   statusCode?: number;
-  data?: any;
+  message?: string;
   decorate?: any;
-  ctor?: any;
+  override?: any;
 }

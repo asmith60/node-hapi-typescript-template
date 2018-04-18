@@ -17,12 +17,12 @@ export abstract class BaseHandler {
   }
 
   protected respondError(error?: Error | ExtendedError | Rethrow) {
-    let boomError: Boom = new Boom();
+    let boomError: Boom;
     if (error) {
       if (error.hasOwnProperty('options')) {
         const extendedError: ExtendedError = (<ExtendedError>error);
         if (extendedError.options && extendedError.options.http) {
-          boomError = new Boom(extendedError, extendedError.options.http);
+          boomError = Boom.boomify(extendedError, extendedError.options.http);
         } else {
           boomError = new Boom(extendedError);
         }
