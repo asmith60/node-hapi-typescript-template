@@ -10,7 +10,9 @@ export const onRequest: ServerExtEventsRequestObject = {
     } else {
       logger.debug(`Begin: ${request.method.toUpperCase()} ${request.path}`);
     }
-    logger.debug('Metadata:');
+    logger.trace('Full Request Object:');
+    logger.trace(request);
+    logger.debug('Request Metadata:');
     logger.debug(request.info);
     if (request.headers && Object.keys(request.headers).length !== 0) {
       logger.debug('Request Headers:');

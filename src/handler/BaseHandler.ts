@@ -12,10 +12,6 @@ export abstract class BaseHandler {
     this.h = h;
   }
 
-  protected respondSuccess(payload) {
-    return payload;
-  }
-
   protected respondError(error?: Error | ExtendedError | Rethrow) {
     let boomError: Boom;
     if (error) {
