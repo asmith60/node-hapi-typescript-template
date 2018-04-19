@@ -67,6 +67,7 @@ main().then(() => {
   logger.info(`Server started at: ${server.info.uri}`);
   logger.info(`API docs available at: ${server.info.uri}/documentation`);
 }).catch((e) => {
+  logger.fatal('Fatal error during init:');
   logger.fatal(e.stack);
   process.exit(1);
 });
