@@ -14,8 +14,6 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          environment:
-            - NODE_ENV: production
           command: npm run build
       - persist_to_workspace:
           root: .

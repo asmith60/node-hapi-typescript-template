@@ -13,14 +13,14 @@ class MonitorHandler extends BaseHandler {
     const res: models.MonitorResponse = {
       status: true
     };
-    return this.h.response(res);
+    return this.respondSuccess(this.h.response(res));
   }
 
   public async readiness(): Promise<ResponseObject> {
     const res: models.MonitorResponse = {
       status: true
     };
-    return this.h.response(res);
+    return this.respondSuccess(this.h.response(res));
   }
 }
 

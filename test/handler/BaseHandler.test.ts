@@ -1,0 +1,57 @@
+import { expect } from 'chai';
+import { Request, ResponseToolkit, ResponseObject } from 'hapi';
+import * as Boom from 'boom';
+import { ExtendedError, Rethrow } from '../../src/lib/ExtendedError';
+import { BaseHandler } from '../../src/handler/BaseHandler';
+
+describe('BaseHandler', () => {
+  class MockHandler extends BaseHandler {
+    constructor(request: Request, h: ResponseToolkit) {
+      super(request, h);
+    }
+
+    public returnsSuccess(payload: any): ResponseObject {
+      return this.respondSuccess(payload);
+    }
+
+    public returnsError(error?: Error | ExtendedError | Rethrow): Boom {
+      return this.respondError(error);
+    }
+  }
+
+  const mockHandler = new MockHandler(<Request>{}, <ResponseToolkit>{});
+
+  describe('respondSuccess', () => {
+    it('responds with 200 status code and correct payload', async () => {
+      const value = { message: 'mock payload' };
+      const expected = mockHandler.returnsSuccess(value);
+
+      expect(value).to.equal(expected);
+    });
+  });
+
+  describe('respondError', () => {
+    it('returns boomified plain error', async () => {
+      const mockError = new Error('mock error message');
+      const value = mockHandler.returnsError(mockError);
+      const expected = new Boom(mockError);
+
+      expect(value).to.deep.equal(expected);
+    });
+
+    it('returns boomified extended error with http options', async () => {
+      const mockError = new ExtendedError('mock error message', { http: { statusCode: 400, message: 'mock http error message' } });
+      const value = mockHandler.returnsError(mockError);
+      const expected = Boom.boomify(mockError, mockError.options.http);
+
+      expect(value).to.deep.equal(expected);
+    });
+
+    it('returns boomified generic error if no error is provided', async () => {
+      const value = mockHandler.returnsError();
+      const expected = new Boom();
+
+      expect(value.output.payload).to.deep.equal(expected.output.payload);
+    });
+  });
+});

@@ -1,5 +1,5 @@
 import { logger } from '../lib/Logger';
-import { Request, ResponseToolkit } from 'hapi';
+import { Request, ResponseToolkit, ResponseObject } from 'hapi';
 import * as Boom from 'boom';
 import { Rethrow, ExtendedError } from '../lib/ExtendedError';
 
@@ -12,22 +12,19 @@ export abstract class BaseHandler {
     this.h = h;
   }
 
-  protected respondError(error?: Error | ExtendedError | Rethrow) {
-    let boomError: Boom;
-    if (error) {
-      if (error.hasOwnProperty('options')) {
-        const extendedError: ExtendedError = (<ExtendedError>error);
-        if (extendedError.options && extendedError.options.http) {
-          boomError = Boom.boomify(extendedError, extendedError.options.http);
-        } else {
-          boomError = new Boom(extendedError);
-        }
-      } else {
-        boomError = new Boom(error);
-      }
-    } else {
-      boomError = new Boom('Responding with unknown error');
+  protected respondSuccess(response: ResponseObject): ResponseObject {
+    return response;
+  }
+
+  protected respondError(error?: Error | ExtendedError | Rethrow): Boom {
+    if (!error) {
+      return new Boom();
     }
-    return boomError;
+
+    if (error.hasOwnProperty('options') && (<ExtendedError>error).options.http) {
+      return Boom.boomify(error, (<ExtendedError>error).options.http);
+    }
+
+    return new Boom(error);
   }
 }
