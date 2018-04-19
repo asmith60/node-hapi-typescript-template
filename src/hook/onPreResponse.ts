@@ -6,18 +6,18 @@ export const onPreResponse: ServerExtEventsRequestObject = {
   method: (request, h) => {
     if (request.response && (<any>request.response).isBoom) {
       const response: any = <any>request.response;
-      logger.trace('Full Error:');
+      logger.trace('Full Error Object:');
       logger.trace(response);
       if (response.output && response.output.payload && Object.keys(response.output.payload).length !== 0) {
-        logger.error(`Error Response Payload:`);
+        logger.error(`Error Payload:`);
         logger.error(response.output.payload);
       }
       if (response.output && response.output.headers && Object.keys(response.output.headers).length !== 0) {
-        logger.error(`Error Response Headers:`);
+        logger.error(`Error Headers:`);
         logger.error(response.output.headers);
       }
       if ((<any>request.response).output && (<any>request.response).output.statusCode) {
-        logger.error(`Error Response Status Code:`);
+        logger.error(`Error Status Code:`);
         logger.error(response.output.statusCode);
       }
     } else {
@@ -35,6 +35,10 @@ export const onPreResponse: ServerExtEventsRequestObject = {
       if (response.statusCode) {
         logger.debug('Response Status Code:');
         logger.debug(response.statusCode);
+      }
+      if (response.app && Object.keys(response.app).length !== 0) {
+        logger.debug('Response Application State:');
+        logger.debug(response.app);
       }
     }
     if (request.path !== '/monitor/liveness' && request.path !== '/monitor/readiness' && !request.path.includes('swagger')) {
