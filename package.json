@@ -68,6 +68,7 @@
   "dependencies": {
     "boom": "7.2.0",
     "bunyan": "1.8.12",
+    "bunyan-debug-stream": "1.0.8",
     "convict": "4.2.0",
     "deepmerge": "2.1.0",
     "hapi": "17.3.1",

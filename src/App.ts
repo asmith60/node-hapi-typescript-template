@@ -7,7 +7,7 @@ import { plugins } from './config/plugins';
 import { routes } from './route';
 import { Server } from 'hapi';
 
-logger.setContext('init');
+logger.setContext('boot');
 
 let server: Server;
 
@@ -57,6 +57,7 @@ main().then(() => {
   logger.info(`Server started at: ${server.info.uri}`);
   logger.info(`API docs available at: ${server.info.uri}/documentation`);
 }).catch((e) => {
+  logger.setContext('shutdown');
   logger.fatal('Fatal error during init:');
   logger.fatal(e.stack);
   process.exit(1);
@@ -76,7 +77,8 @@ process.on('unhandledRejection', (reason: any) => {
 
 // Catch system signals and gracefully stop application
 process.on('SIGINT', async () => {
-  logger.info('Caught SIGINT. Stopping application');
+  logger.setContext('shutdown');
+  logger.info('Caught SIGINT. Gracefully stopping application');
 
   try {
     await server.stop();
@@ -88,7 +90,8 @@ process.on('SIGINT', async () => {
 });
 
 process.on('SIGTERM', async () => {
-  logger.info('Caught SIGTERM. Stopping application');
+  logger.setContext('shutdown');
+  logger.info('Caught SIGTERM. Gracefully stopping application');
 
   try {
     await server.stop();

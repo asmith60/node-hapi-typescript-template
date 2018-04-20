@@ -21,6 +21,8 @@ export abstract class BaseHandler {
       return new Boom();
     }
 
+    logger.error(error.stack);
+
     if (error.hasOwnProperty('options') && (<ExtendedError>error).options.http) {
       return Boom.boomify(error, (<ExtendedError>error).options.http);
     }
