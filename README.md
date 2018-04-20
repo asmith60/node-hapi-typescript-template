@@ -1,6 +1,6 @@
 # Node Hapi.js Typescript Template
 
-[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=svg)](https://circleci.com/gh/asmith60/node-hapi-typescript-template)
+[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=shield)](https://circleci.com/gh/asmith60/node-hapi-typescript-template)
 
 ## Build
 

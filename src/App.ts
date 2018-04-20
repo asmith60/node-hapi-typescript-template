@@ -9,16 +9,6 @@ import { Server } from 'hapi';
 
 logger.setContext('init');
 
-// Catch unhandled uncaught exceptions
-process.on('uncaughtException', (e: Error) => {
-  logger.error(`uncaughtException: ${e.stack}`);
-});
-
-// Catch unhandled rejected promises
-process.on('unhandledRejection', (reason: any) => {
-  logger.error(`unhandledRejection: ${reason}`);
-});
-
 let server: Server;
 
 async function main(): Promise<void> {
@@ -70,4 +60,41 @@ main().then(() => {
   logger.fatal('Fatal error during init:');
   logger.fatal(e.stack);
   process.exit(1);
+});
+
+// Catch unhandled uncaught exceptions
+process.on('uncaughtException', (e: Error) => {
+  logger.error('uncaughtException:');
+  logger.error(e.stack);
+});
+
+// Catch unhandled rejected promises
+process.on('unhandledRejection', (reason: any) => {
+  logger.error('unhandledRejection:');
+  logger.error(reason);
+});
+
+// Catch system signals and gracefully stop application
+process.on('SIGINT', async () => {
+  logger.info('Caught SIGINT. Stopping application');
+
+  try {
+    await server.stop();
+  } catch (e) {
+    logger.error('Unable to stop application gracefully. Forcefully killing process');
+    logger.error(e.stack);
+    process.exit(1);
+  }
+});
+
+process.on('SIGTERM', async () => {
+  logger.info('Caught SIGTERM. Stopping application');
+
+  try {
+    await server.stop();
+  } catch (e) {
+    logger.error('Unable to stop application gracefully. Forcefully killing process');
+    logger.error(e.stack);
+    process.exit(1);
+  }
 });
