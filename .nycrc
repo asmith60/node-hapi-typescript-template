@@ -1,20 +1,24 @@
 {
-    "check-coverage": false,
-    "per-file": true,
-    "include": [
-      "src/**/*.ts",
-      "src/*.ts"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "text-summary",
-      "json"
-    ],
-    "cache": true,
-    "all": true,
-    "instrument": false,
-    "sourceMap": false,
-    "report-dir": "./artifacts/coverage/istanbul"
+  "lines": 80,
+  "statements": 80,
+  "functions": 80,
+  "branches": 80,
+  "check-coverage": false,
+  "per-file": true,
+  "include": [
+    "src/**/*.ts",
+    "src/*.ts"
+  ],
+  "exclude": [
+    "**/*.d.ts"
+  ],
+  "reporter": [
+    "text-summary",
+    "json-summary"
+  ],
+  "cache": true,
+  "all": true,
+  "instrument": false,
+  "sourceMap": false,
+  "report-dir": "./artifacts/coverage/istanbul"
 }
