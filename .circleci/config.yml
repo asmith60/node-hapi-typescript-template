@@ -55,12 +55,9 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: npm run test:security
-      - run:
-          when: on_fail
           command: |
             mkdir -p artifacts/security/nsp
-            node_modules/.bin/nsp check --threshold 10 --reporter json > artifacts/security/nsp/security-test-results.json
+            npm --loglevel=silent run test:security -- --reporter json | tee artifacts/security/nsp/security-test-results.json
       - store_artifacts:
           path: ./artifacts
 
