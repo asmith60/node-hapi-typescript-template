@@ -1,4 +1,3 @@
-import { logger } from '../lib/Logger';
 import { Request, ResponseToolkit, ResponseObject } from 'hapi';
 import { BaseHandler } from './BaseHandler';
 import * as models from '../model';

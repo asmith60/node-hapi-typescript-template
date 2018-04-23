@@ -1,5 +1,6 @@
 import * as bunyan from 'bunyan';
 import * as bunyanDebugStream from 'bunyan-debug-stream';
+import { inspect } from 'util';
 import { config } from '../config/environment';
 
 export class Logger {
@@ -8,7 +9,7 @@ export class Logger {
   constructor(env: string) {
     let bunyanLoggerOptions: bunyan.LoggerOptions;
 
-    if (env === 'development') {
+    if (env === 'development' || env === 'unit_test') {
       bunyanLoggerOptions = {
         name: config.get('name'),
         level: config.get('logLevel'),
@@ -17,13 +18,12 @@ export class Logger {
           level: config.get('logLevel'),
           type: 'raw',
           stream: bunyanDebugStream({
-            basepath: '..',
             forceColor: true,
             stringifiers: {
               message: (message) => {
                 let output: string;
                 if (message && typeof message === 'object') {
-                  output = JSON.stringify(message, null, 2);
+                  output = inspect(message, { depth: 5 });
                 } else {
                   output = message;
                 }
@@ -53,27 +53,39 @@ export class Logger {
   }
 
   public fatal(message: any): void {
-    this.bunyanLogger.fatal({ message });
+    if (config.get('enableLogs')) {
+      this.bunyanLogger.fatal({ message });
+    }
   }
 
   public error(message: any): void {
-    this.bunyanLogger.error({ message });
+    if (config.get('enableLogs')) {
+      this.bunyanLogger.error({ message });
+    }
   }
 
   public warn(message: any): void {
-    this.bunyanLogger.warn({ message });
+    if (config.get('enableLogs')) {
+      this.bunyanLogger.warn({ message });
+    }
   }
 
   public info(message: any): void {
-    this.bunyanLogger.info({ message });
+    if (config.get('enableLogs')) {
+      this.bunyanLogger.info({ message });
+    }
   }
 
   public debug(message: any): void {
-    this.bunyanLogger.debug({ message });
+    if (config.get('enableLogs')) {
+      this.bunyanLogger.debug({ message });
+    }
   }
 
   public trace(message: any): void {
-    this.bunyanLogger.trace({ message });
+    if (config.get('enableLogs')) {
+      this.bunyanLogger.trace({ message });
+    }
   }
 }
 

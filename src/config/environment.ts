@@ -26,6 +26,12 @@ const convictConfig: convict.Config = convict({
     default: 'info',
     env: 'LOG_LEVEL'
   },
+  enableLogs: {
+    doc: 'Flag to turn on logging',
+    format: Boolean,
+    default: true,
+    env: 'ENABLE_LOGS'
+  },
   host: {
     doc: 'Hostname or IP address the server will listen on',
     format: String,
