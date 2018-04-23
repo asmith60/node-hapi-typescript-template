@@ -28,8 +28,7 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         include: [
-          path.resolve(__dirname, "src"),
-          path.resolve(__dirname, "test")
+          path.resolve(__dirname, "src")
         ],
         use: [
           {

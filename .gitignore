@@ -1,8 +1,8 @@
 node_modules
 dist
-dist.test
 npm-debug.log
 env.json
 test-results.xml
 lint-test-results.xml
 artifacts
+.nyc_output
