@@ -23,7 +23,7 @@ export const globalRouteOptions: RouteOptions = {
       logger.error(err);
       if (config.get('env') === 'production') {
         // In prod, throw the default Internal Server Error
-        throw new Boom('Invalid response payload');
+        throw Boom.boomify(new Error('Invalid response payload'));
       } else {
         // During development, respond with the full error
         throw err;
