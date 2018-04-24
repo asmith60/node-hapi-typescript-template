@@ -34,7 +34,11 @@ export class Rethrow extends ExtendedError {
         super(message, errorOptions);
       }
     } else {
-      super(message);
+      if (options) {
+        super(message, options);
+      } else {
+        super(message);
+      }
     }
     this.original = error;
     if (originalOptions) {

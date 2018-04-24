@@ -26,6 +26,12 @@ describe('EnvironmentConfig', () => {
     expect(config.get('logLevel')).to.equal(expected);
   });
 
+  it('returns true if process.env.ENABLE_LOGS is not set', () => {
+    const expected: boolean = true;
+
+    expect(config.get('enableLogs')).to.equal(expected);
+  });
+
   it('returns "env.json" if process.env.ENV_FILE_PATH is not set', () => {
     const expected: string = 'env.json';
 

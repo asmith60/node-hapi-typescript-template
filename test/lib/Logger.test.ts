@@ -30,42 +30,42 @@ describe('LoggerLib', () => {
   });
 
   it('logs messages as fatal', () => {
-    const spy: sinon.SinonSpy = sandbox.spy(bunyan.prototype, 'fatal');
+    const stub: sinon.SinonStub = sandbox.stub(bunyan.prototype, 'fatal');
 
     logger.fatal('mock log');
 
-    chai.expect(spy.called).to.equal(true);
+    chai.expect(stub.called).to.equal(true);
   });
 
   it('logs messages as error', () => {
-    const spy: sinon.SinonSpy = sandbox.spy(bunyan.prototype, 'error');
+    const stub: sinon.SinonStub = sandbox.stub(bunyan.prototype, 'error');
 
     logger.error('mock log');
 
-    chai.expect(spy.called).to.equal(true);
+    chai.expect(stub.called).to.equal(true);
   });
 
   it('logs messages as info', () => {
-    const spy: sinon.SinonSpy = sandbox.spy(bunyan.prototype, 'info');
+    const stub: sinon.SinonStub = sandbox.stub(bunyan.prototype, 'info');
 
     logger.info('mock log');
 
-    chai.expect(spy.called).to.equal(true);
+    chai.expect(stub.called).to.equal(true);
   });
 
   it('logs messages as debug', () => {
-    const spy: sinon.SinonSpy = sandbox.spy(bunyan.prototype, 'debug');
+    const stub: sinon.SinonStub = sandbox.stub(bunyan.prototype, 'debug');
 
     logger.debug('mock log');
 
-    chai.expect(spy.called).to.equal(true);
+    chai.expect(stub.called).to.equal(true);
   });
 
   it('logs messages as trace', () => {
-    const spy: sinon.SinonSpy = sandbox.spy(bunyan.prototype, 'trace');
+    const stub: sinon.SinonStub = sandbox.stub(bunyan.prototype, 'trace');
 
     logger.trace('mock log');
 
-    chai.expect(spy.called).to.equal(true);
+    chai.expect(stub.called).to.equal(true);
   });
 });
