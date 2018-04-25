@@ -14,7 +14,7 @@
     "test:watch": "npm run test -- --watch",
     "test:junit": "npm run test -- --reporter mocha-junit-reporter --reporter-options mochaFile=./artifacts/junit/mocha/unit-test-results.xml",
     "test:security": "node_modules/.bin/nsp check",
-    "test:all": "npm run lint && npm run test && npm run test:security",
+    "test:all": "npm run test && npm run lint && npm run test:security",
     "lint": "node_modules/.bin/tslint -p . -c tslint.json",
     "lint:junit": "mkdir -p artifacts/junit/tslint && node_modules/.bin/tslint -p . -c tslint.json -t junit > artifacts/junit/tslint/lint-test-results.xml",
     "debug": "node_modules/.bin/nodemon --watch ./dist --inspect-brk=0.0.0.0:9222 --nolazy ./dist/main.bundle.js",

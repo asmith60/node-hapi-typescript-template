@@ -40,4 +40,4 @@ export const setSignals = (server: Server) => {
       process.exit(1);
     }
   });
-}
+};
