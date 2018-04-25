@@ -1,5 +1,6 @@
 import { config } from './config/environment';
 import { logger } from './lib/Logger';
+import { setSignals } from './config/signals';
 import { Rethrow } from './lib/ExtendedError';
 import { globalRouteOptions } from './config/gobalRouteOptions';
 import { hooks } from './hook';
@@ -25,6 +26,12 @@ async function main(): Promise<void> {
     }
   } catch (e) {
     throw new Rethrow('Problem creating server', e);
+  }
+
+  try {
+    setSignals(server);
+  } catch (e) {
+    throw new Rethrow('Problem setting system signals', e);
   }
 
   try {
@@ -61,43 +68,4 @@ main().then(() => {
   logger.fatal('Fatal error during init:');
   logger.fatal(e.stack);
   process.exit(1);
-});
-
-// Catch unhandled uncaught exceptions
-process.on('uncaughtException', (e: Error) => {
-  logger.error('uncaughtException:');
-  logger.error(e.stack);
-});
-
-// Catch unhandled rejected promises
-process.on('unhandledRejection', (reason: any) => {
-  logger.error('unhandledRejection:');
-  logger.error(reason);
-});
-
-// Catch system signals and gracefully stop application
-process.on('SIGINT', async () => {
-  logger.setContext('shutdown');
-  logger.info('Caught SIGINT. Gracefully stopping application');
-
-  try {
-    await server.stop();
-  } catch (e) {
-    logger.error('Unable to stop application gracefully. Forcefully killing process');
-    logger.error(e.stack);
-    process.exit(1);
-  }
-});
-
-process.on('SIGTERM', async () => {
-  logger.setContext('shutdown');
-  logger.info('Caught SIGTERM. Gracefully stopping application');
-
-  try {
-    await server.stop();
-  } catch (e) {
-    logger.error('Unable to stop application gracefully. Forcefully killing process');
-    logger.error(e.stack);
-    process.exit(1);
-  }
 });
