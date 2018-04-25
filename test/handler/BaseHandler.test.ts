@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import * as chai from 'chai';
 import { Request, ResponseToolkit, ResponseObject } from 'hapi';
 import * as Boom from 'boom';
 import { config } from '../../src/config/environment';
@@ -27,7 +27,7 @@ describe('BaseHandler', () => {
       const value = { message: 'mock payload' };
       const expected = mockHandler.returnsSuccess(value);
 
-      expect(value).to.equal(expected);
+      chai.expect(value).to.equal(expected);
     });
   });
 
@@ -39,7 +39,7 @@ describe('BaseHandler', () => {
       config.set('enableLogs', true);
       const expected = new Boom(mockError);
 
-      expect(value).to.deep.equal(expected);
+      chai.expect(value).to.deep.equal(expected);
     });
 
     it('returns boomified extended error with http options', async () => {
@@ -49,7 +49,7 @@ describe('BaseHandler', () => {
       config.set('enableLogs', true);
       const expected = Boom.boomify(mockError, mockError.options.http);
 
-      expect(value).to.deep.equal(expected);
+      chai.expect(value).to.deep.equal(expected);
     });
 
     it('returns boomified generic error if no error is provided', async () => {
@@ -58,7 +58,7 @@ describe('BaseHandler', () => {
       config.set('enableLogs', true);
       const expected = new Boom();
 
-      expect(value.output.payload).to.deep.equal(expected.output.payload);
+      chai.expect(value.output.payload).to.deep.equal(expected.output.payload);
     });
   });
 });

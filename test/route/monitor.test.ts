@@ -1,6 +1,6 @@
 import { config } from '../../src/config/environment';
 import * as models from '../../src/model';
-import { expect } from 'chai';
+import * as chai from 'chai';
 import { Server, ServerInjectResponse } from 'hapi';
 import { routes } from '../../src/route';
 import { globalRouteOptions } from '../../src/config/gobalRouteOptions';
@@ -20,8 +20,8 @@ describe('MonitorRoute', () => {
         url: '/monitor/liveness'
       });
 
-      expect(res.statusCode).to.equal(200);
-      expect((<models.MonitorResponse>JSON.parse(res.payload)).status).to.equal(true);
+      chai.expect(res.statusCode).to.equal(200);
+      chai.expect((<models.MonitorResponse>JSON.parse(res.payload)).status).to.equal(true);
     });
   });
 
@@ -32,8 +32,8 @@ describe('MonitorRoute', () => {
         url: '/monitor/readiness'
       });
 
-      expect(res.statusCode).to.equal(200);
-      expect((<models.MonitorResponse>JSON.parse(res.payload)).status).to.equal(true);
+      chai.expect(res.statusCode).to.equal(200);
+      chai.expect((<models.MonitorResponse>JSON.parse(res.payload)).status).to.equal(true);
     });
   });
 });
