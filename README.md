@@ -1,6 +1,6 @@
 # Node Hapi.js Typescript Template
 
-[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=shield)](https://circleci.com/gh/asmith60/node-hapi-typescript-template)
+[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=shield)](https://circleci.com/gh/asmith60/workflows/node-hapi-typescript-template)
 
 This project is meant to be boilerplate for creating APIs in Node with [Typescript](https://www.typescriptlang.org/) and [Hapi](https://hapijs.com/). This document will explain the overall structure of the project, as well as some of the design decisions. It will also highlight some of the processes and tools used in the project.
 
