@@ -14,6 +14,7 @@ This project is meant to be boilerplate for creating APIs in Node with [Typescri
   * [repository](#repository)
   * [route](#route)
   * [service](#service)
+  * [App.ts](#appts)
 - [Building](#building)
 - [Testing](#testing)
   * [Unit](#unit)
@@ -68,6 +69,10 @@ Configuration for API endpoints. The definition of a route is dicated by [Hapi](
 ### service(src/service)
 
 The middleware between handler and repository/gateway. Performs business logic and orchestrates the request.
+
+### [App.ts](src/App.ts)
+
+Entrypoint for the application. Starts server, registers routes, loads plugins, etc.
 
 ## Building
 
