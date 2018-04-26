@@ -66,7 +66,7 @@ An abstraction over your persistence layer.
 
 Configuration for API endpoints. The definition of a route is dicated by [Hapi](https://hapijs.com/). See [here](https://hapijs.com/api#-serverrouteroute) for more details.
 
-### service(src/service)
+### [service](src/service)
 
 The middleware between handler and repository/gateway. Performs business logic and orchestrates the request.
 
