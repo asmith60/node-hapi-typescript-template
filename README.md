@@ -23,6 +23,7 @@ This project is meant to be boilerplate for creating APIs in Node with [Typescri
   * [Security](#security)
 - [Local Development](#local-development)
 - [Logging](#logging)
+- [API Documentation](#api-documentation)
 - [Docker](#docker)
 - [CI](#ci)
 - [IDE Integration](#ide-integration)
@@ -139,6 +140,10 @@ npm run dev:watch
 ## Logging
 
 [Bunyan](https://github.com/trentm/node-bunyan) is used for logging. All logs are written to stdout. The log level is configured with the `LOG_LEVEL` environment variable (default is 'info'). There is also a convenience configuration to turn off logging completely (mostly used during testing to avoid spurious logging). Toggle this config by setting the `ENABLE_LOGS` environment variable to `true` or `false` (default is `true`). Bunyan formats logs into a JSON structure that is easily parsed by a log aggregator (SumoLogic). For local development, I have configured Bunyan to write logs in a more human readable format using [bunyan-debug-stream](https://github.com/benbria/bunyan-debug-stream). Logs are written in the human readable format if the `NODE_ENV` environment variable is set to `development` (the default) or `unit_test`, otherwise logs are written in JSON format.
+
+## API Documentation
+
+The [hapi-swagger](https://github.com/glennjones/hapi-swagger) library is used to generate Swagger API documentation with the information in the route configuration (path, method, request/response schema, etc). The documentation can be accessed via the application at `/documentation`.
 
 ## Docker
 
