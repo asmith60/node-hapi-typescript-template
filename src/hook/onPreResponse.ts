@@ -16,7 +16,7 @@ export const onPreResponse: ServerExtEventsRequestObject = {
         logger.error(`Error Headers:`);
         logger.error(response.output.headers);
       }
-      if ((<any>request.response).output && (<any>request.response).output.statusCode) {
+      if (response.output && response.output.statusCode) {
         logger.error(`Error Status Code:`);
         logger.error(response.output.statusCode);
       }
