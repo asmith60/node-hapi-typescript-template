@@ -49,7 +49,7 @@ A handler is where the API request first lands when it hits the application. In 
 
 ### [hook](src/hook)
 
-Hooks are a framework feature of [Hapi](https://hapijs.com/). They allow us to intercept the request/repsonse during its lifecycle and perform logic/modifications. In the context of this template they are used exclusively for logging. You can read more about them [here](https://hapijs.com/api#request-lifecycle)
+Hooks are a framework feature of [Hapi](https://hapijs.com/). They allow us to intercept the request/response during its lifecycle and perform logic/modifications. In the context of this template they are used exclusively for logging. You can read more about them [here](https://hapijs.com/api#request-lifecycle)
 
 ### [lib](src/lib)
 
