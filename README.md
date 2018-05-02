@@ -57,7 +57,7 @@ A sort of umbrella for shared modules of code that don't belong in any of the ot
 
 ### [model](src/model)
 
-There are two types of models for this template: [Joi](https://github.com/hapijs/joi) models and Typescript interfaces. [Joi](https://github.com/hapijs/joi) is a Node.js validation library written to be used with [Hapi](https://hapijs.com/). It is a very robust and convenient solution for request/repsponse validation. Typescript interfaces describe the structure and type of entities in our code. There is some obvious overlap/duplication between the two tools, but that is balanced by the benefit they provide.
+There are two types of models for this template: [Joi](https://github.com/hapijs/joi) models and Typescript interfaces. [Joi](https://github.com/hapijs/joi) is a Node.js validation library written to be used with [Hapi](https://hapijs.com/). It is a very robust and convenient solution for request/response validation. Typescript interfaces describe the structure and type of entities in our code. There is some obvious overlap/duplication between the two tools, but that is balanced by the benefit they provide.
 
 ### [repository](src/repository)
 
