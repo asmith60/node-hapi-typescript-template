@@ -3,7 +3,7 @@ import { Request, ResponseToolkit, ResponseObject } from 'hapi';
 import * as Boom from 'boom';
 import { config } from '../../src/config/environment';
 import { ExtendedError, Rethrow } from '../../src/lib/ExtendedError';
-import { BaseHandler } from '../../src/handler/BaseHandler';
+import { BaseHandler } from '../../src/handler/base/BaseHandler';
 
 describe('BaseHandler', () => {
   class MockHandler extends BaseHandler {

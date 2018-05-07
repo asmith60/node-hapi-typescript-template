@@ -1,7 +1,7 @@
-import { logger } from '../lib/Logger';
+import { logger } from '../../lib/Logger';
 import { Request, ResponseToolkit, ResponseObject } from 'hapi';
 import * as Boom from 'boom';
-import { Rethrow, ExtendedError } from '../lib/ExtendedError';
+import { Rethrow, ExtendedError } from '../../lib/ExtendedError';
 
 export abstract class BaseHandler {
   protected request: Request;
@@ -21,7 +21,11 @@ export abstract class BaseHandler {
       return new Boom();
     }
 
+    logger.debug('Full Error Object:');
+    logger.debug(error);
+
     if (error.stack) {
+      logger.error('Error Stack:');
       logger.error(error.stack);
     } else {
       logger.error('No Error stack to log');

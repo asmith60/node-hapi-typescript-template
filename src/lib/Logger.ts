@@ -14,6 +14,7 @@ export class Logger {
         name: config.get('name'),
         level: config.get('logLevel'),
         context: null,
+        src: true,
         streams: [{
           level: config.get('logLevel'),
           type: 'raw',

@@ -1,5 +1,5 @@
 import { Request, ResponseToolkit, ResponseObject } from 'hapi';
-import { BaseHandler } from './BaseHandler';
+import { BaseHandler } from './base/BaseHandler';
 import * as models from '../model';
 
 class MonitorHandler extends BaseHandler {

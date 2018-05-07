@@ -74,6 +74,7 @@
     "webpack-node-externals": "1.7.2"
   },
   "dependencies": {
+    "axios": "0.18.0",
     "boom": "7.2.0",
     "bunyan": "1.8.12",
     "bunyan-debug-stream": "1.0.8",
