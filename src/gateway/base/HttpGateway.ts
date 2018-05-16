@@ -4,15 +4,15 @@ import { logger } from '../../lib/Logger';
 import { ExtendedError, Rethrow } from '../../lib/ExtendedError';
 
 export abstract class HttpGateway extends BaseGateway {
-  protected instance: HttpInstance;
-  constructor(httpOpts: HttpRequestConfig | undefined) {
+  private instance: HttpInstance;
+  constructor(httpOpts?: HttpRequestConfig | undefined) {
     super();
     if (httpOpts) {
-      logger.debug('[HTTPGateway] Instance Options:');
+      logger.debug('[HttpGateway] Instance Options:');
       logger.debug(httpOpts);
       this.instance = axios.create(httpOpts);
     } else {
-      this.instance = axios.create(httpOpts);
+      this.instance = axios.create();
     }
   }
 
@@ -81,11 +81,42 @@ export abstract class HttpGateway extends BaseGateway {
     return response;
   }
 
+  protected handleError(error: any) {
+    if (error.response) {
+      return new ExtendedError('[HttpGateway] Endpoint responded with a status code that falls out of the range of 2xx', {
+        http: {
+          statusCode: error.response.status ? error.response.status : 500,
+          message: JSON.stringify(error.response.data ? error.response.data : '[HttpGateway] API responded with an error')
+        }
+      });
+    }
+
+    if (error.request) {
+      return new ExtendedError('[HttpGateway] Something happened in setting up the request that triggered an Error', {
+        http: {
+          statusCode: 500,
+          message: '[HttpGateway] Error setting up request'
+        }
+      });
+    }
+
+    return new Rethrow('[HttpGateway] Generic error occurred', error, {
+      http: {
+        statusCode: 500,
+        message: '[HttpGateway] Generic error occurred'
+      }
+    });
+  }
+
   private logRequest(method: string, url: string, data: any, config: HttpRequestConfig | undefined): void {
+    if (!config) {
+      // tslint:disable-next-line
+      config = {};
+    }
     if (this.instance.defaults.baseURL) {
-      logger.debug(`[HTTPGateway] BEGIN ${method.toUpperCase()} ${this.instance.defaults.baseURL}${url}`);
+      logger.debug(`[HttpGateway] BEGIN ${method.toUpperCase()} ${this.instance.defaults.baseURL}${url}`);
     } else {
-      logger.debug(`[HTTPGateway] BEGIN ${method.toUpperCase()} ${url}`);
+      logger.debug(`[HttpGateway] BEGIN ${method.toUpperCase()} ${url}`);
     }
 
     if (this.instance.defaults.headers || (config && config.headers)) {
