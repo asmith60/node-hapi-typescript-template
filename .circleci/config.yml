@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.11
+      - image: circleci/node:10.8
     steps:
       - checkout
       - restore_cache:
@@ -22,7 +22,7 @@ jobs:
             - dist
   unit-test:
     docker:
-      - image: circleci/node:9.11
+      - image: circleci/node:10.8
     steps:
       - checkout
       - attach_workspace:
@@ -36,7 +36,7 @@ jobs:
           path: ./artifacts
   lint-test:
     docker:
-      - image: circleci/node:9.11
+      - image: circleci/node:10.8
     steps:
       - checkout
       - attach_workspace:
@@ -49,7 +49,7 @@ jobs:
           path: ./artifacts
   security-test:
     docker:
-      - image: circleci/node:9.11
+      - image: circleci/node:10.8
     steps:
       - checkout
       - attach_workspace:
@@ -60,6 +60,15 @@ jobs:
             npm --loglevel=silent run test:security -- --reporter json | tee artifacts/json/nsp/security-test-results.json
       - store_artifacts:
           path: ./artifacts
+  release:
+    docker:
+      - image: circleci/node:10.8
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          command: npm run release
 
 workflows:
   version: 2
