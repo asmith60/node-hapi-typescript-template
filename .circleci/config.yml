@@ -84,3 +84,8 @@ workflows:
       - security-test:
           requires:
             - build
+      - release:
+          requires:
+            - unit-test
+            - lint-test
+            - security-test
