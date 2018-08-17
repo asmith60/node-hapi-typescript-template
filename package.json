@@ -29,7 +29,6 @@
     "release": "node_modules/.bin/semantic-release",
     "release:dry-run": "npm run release -- --dry-run --no-ci",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "prepush": "npm run test:all",
     "start": "node dist/main.bundle.js"
   },
   "release": {
