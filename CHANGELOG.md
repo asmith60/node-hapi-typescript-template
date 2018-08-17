@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/asmith60/node-hapi-typescript-template/compare/1.0.0...1.1.0) (2018-08-17)
+
+
+### Features
+
+* testing version bump ([91c423f](https://github.com/asmith60/node-hapi-typescript-template/commit/91c423f))
+
 # 1.0.0 (2018-08-17)
 
 
