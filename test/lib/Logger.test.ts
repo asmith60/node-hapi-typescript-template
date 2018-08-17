@@ -2,8 +2,8 @@ import * as chai from 'chai';
 import * as sinon from 'sinon';
 import * as chaiAsPromised from 'chai-as-promised';
 import * as bunyan from 'bunyan';
-import { config } from '../../src/config/environment';
-import { logger } from '../../src/lib/Logger';
+import { config } from '@config/environment';
+import { logger } from '@lib/Logger';
 
 chai.use(chaiAsPromised);
 

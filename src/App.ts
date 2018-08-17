@@ -1,11 +1,11 @@
-import { config } from './config/environment';
-import { logger } from './lib/Logger';
-import { setSignals } from './config/signals';
-import { Rethrow } from './lib/ExtendedError';
-import { globalRouteOptions } from './config/gobalRouteOptions';
-import { hooks } from './hook';
-import { plugins } from './config/plugins';
-import { routes } from './route';
+import { config } from '@config/environment';
+import { logger } from '@lib/Logger';
+import { setSignals } from '@config/signals';
+import { Rethrow } from '@lib/ExtendedError';
+import { globalRouteOptions } from '@config/gobalRouteOptions';
+import { hooks } from '@hook';
+import { plugins } from '@config/plugins';
+import { routes } from '@route';
 import { Server } from 'hapi';
 
 logger.setContext('boot');

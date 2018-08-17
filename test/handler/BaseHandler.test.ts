@@ -1,9 +1,9 @@
 import * as chai from 'chai';
 import { Request, ResponseToolkit, ResponseObject } from 'hapi';
 import * as Boom from 'boom';
-import { config } from '../../src/config/environment';
-import { ExtendedError, Rethrow } from '../../src/lib/ExtendedError';
-import { BaseHandler } from '../../src/handler/base/BaseHandler';
+import { config } from '@config/environment';
+import { ExtendedError, Rethrow } from '@lib/ExtendedError';
+import { BaseHandler } from '@handler/base/BaseHandler';
 
 describe('BaseHandler', () => {
   class MockHandler extends BaseHandler {

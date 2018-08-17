@@ -1,5 +1,5 @@
 import { ServerExtEventsRequestObject } from 'hapi';
-import { logger } from '../lib/Logger';
+import { logger } from '@lib/Logger';
 
 export const onRequest: ServerExtEventsRequestObject = {
   type: 'onRequest',

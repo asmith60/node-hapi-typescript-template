@@ -1,9 +1,9 @@
-import { config } from '../../src/config/environment';
-import * as models from '../../src/model';
+import { config } from '@config/environment';
+import * as models from '@model';
 import * as chai from 'chai';
 import { Server, ServerInjectResponse } from 'hapi';
-import { routes } from '../../src/route';
-import { globalRouteOptions } from '../../src/config/gobalRouteOptions';
+import { routes } from '@route';
+import { globalRouteOptions } from '@config/gobalRouteOptions';
 
 describe('MonitorRoute', () => {
   const server = new Server({

@@ -1,10 +1,68 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "outDir": "dist",
     "target": "es6",
     "module": "commonjs",
     "strictNullChecks": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "paths": {
+      "@config": [
+        "config"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@gateway": [
+        "gateway"
+      ],
+      "@gateway/*": [
+        "gateway/*"
+      ],
+      "@handler": [
+        "handler"
+      ],
+      "@handler/*": [
+        "handler/*"
+      ],
+      "@hook": [
+        "hook"
+      ],
+      "@hook/*": [
+        "hook/*"
+      ],
+      "@lib": [
+        "lib"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@model": [
+        "model"
+      ],
+      "@model/*": [
+        "model/*"
+      ],
+      "@repository": [
+        "repository"
+      ],
+      "@repository/*": [
+        "repository/*"
+      ],
+      "@route": [
+        "route"
+      ],
+      "@route/*": [
+        "route/*"
+      ],
+      "@service": [
+        "service"
+      ],
+      "@service/*": [
+        "service/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules"

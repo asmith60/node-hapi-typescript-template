@@ -1,4 +1,4 @@
-import { logger } from '../lib/Logger';
+import { logger } from '@lib/Logger';
 import { Server } from 'hapi';
 
 export const setSignals = (server: Server) => {

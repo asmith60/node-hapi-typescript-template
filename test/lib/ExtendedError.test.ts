@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import * as sinon from 'sinon';
 import * as chaiAsPromised from 'chai-as-promised';
-import { ExtendedError, Rethrow } from '../../src/lib/ExtendedError';
+import { ExtendedError, Rethrow } from '@lib/ExtendedError';
 
 chai.use(chaiAsPromised);
 

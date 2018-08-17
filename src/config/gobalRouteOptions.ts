@@ -1,8 +1,9 @@
 
 import { RouteOptions } from 'hapi';
 import * as Boom from 'boom';
-import { logger } from '../lib/Logger';
-import { config } from '../config/environment';
+import { logger } from '@lib/Logger';
+import { config } from '@config/environment';
+
 export const globalRouteOptions: RouteOptions = {
   validate: {
     failAction: async (request, h, err) => {

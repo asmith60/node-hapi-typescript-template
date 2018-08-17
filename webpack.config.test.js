@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const tsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const isCoverage = process.env.NODE_ENV === 'unit_test';
 
 module.exports = {
@@ -13,7 +14,8 @@ module.exports = {
       '.json',
       '.ts',
       '.tsx'
-    ]
+    ],
+    plugins: [new tsconfigPathsPlugin()]
   },
   output: {
     devtoolModuleFilenameTemplate: '[absolute-resource-path]',

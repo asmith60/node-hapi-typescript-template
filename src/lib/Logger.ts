@@ -1,7 +1,7 @@
 import * as bunyan from 'bunyan';
 import * as bunyanDebugStream from 'bunyan-debug-stream';
 import { inspect } from 'util';
-import { config } from '../config/environment';
+import { config } from '@config/environment';
 
 export class Logger {
   protected bunyanLogger: bunyan;

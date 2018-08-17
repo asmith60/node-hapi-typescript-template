@@ -1,4 +1,4 @@
-FROM node:9.11-alpine
+FROM node:10.8-alpine
 
 RUN apk update && apk add python make
 

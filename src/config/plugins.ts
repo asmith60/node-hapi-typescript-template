@@ -1,5 +1,5 @@
 import { ServerRegisterPluginObject } from 'hapi';
-import { config } from './environment';
+import { config } from '@config/environment';
 import * as hapiSwagger from 'hapi-swagger';
 import * as inert from 'inert';
 import * as vision from 'vision';

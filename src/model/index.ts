@@ -1,1 +1,1 @@
-export * from './Monitor';
+export * from '@model/Monitor';

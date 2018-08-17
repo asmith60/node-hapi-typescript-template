@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const tsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const mode = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod' ? 'production' : 'development';
 const isProd = mode === 'production';
 
@@ -15,7 +16,8 @@ module.exports = {
       '.json',
       '.ts',
       '.tsx'
-    ]
+    ],
+    plugins: [new tsconfigPathsPlugin()]
   },
   output: {
     libraryTarget: 'commonjs',

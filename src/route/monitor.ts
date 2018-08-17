@@ -1,6 +1,6 @@
 import { ServerRoute } from 'hapi';
-import * as monitor from '../handler/MonitorHandler';
-import * as joiModels from '../model/joi';
+import * as monitor from '@handler/MonitorHandler';
+import * as joiModels from '@model/joi';
 
 export const liveness: ServerRoute = {
   method: 'GET',

@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios';
-import { BaseGateway } from './BaseGateway';
-import { logger } from '../../lib/Logger';
-import { ExtendedError, Rethrow } from '../../lib/ExtendedError';
+import { BaseGateway } from '@gateway/base/BaseGateway';
+import { logger } from '@lib/Logger';
+import { ExtendedError, Rethrow } from '@lib/ExtendedError';
 
 export abstract class HttpGateway extends BaseGateway {
   private instance: HttpInstance;

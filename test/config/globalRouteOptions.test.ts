@@ -3,8 +3,8 @@ import * as sinon from 'sinon';
 import * as chaiAsPromised from 'chai-as-promised';
 import { Request, ResponseToolkit, RouteOptionsValidate } from 'hapi';
 import * as Boom from 'boom';
-import { config } from '../../src/config/environment';
-import { globalRouteOptions } from '../../src/config/gobalRouteOptions';
+import { config } from '@config/environment';
+import { globalRouteOptions } from '@config/gobalRouteOptions';
 
 chai.use(chaiAsPromised);
 

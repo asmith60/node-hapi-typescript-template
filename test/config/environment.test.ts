@@ -1,4 +1,4 @@
-import { config } from '../../src/config/environment';
+import { config } from '@config/environment';
 import * as chai from 'chai';
 
 describe('EnvironmentConfig', () => {
