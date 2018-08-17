@@ -39,7 +39,7 @@ describe('EnvironmentConfig', () => {
   });
 
   it('returns "node-hapi-typescript-template" if process.env.APP_NAME is not set', () => {
-    const expected: string = 'blah-node-hapi-typescript-template';
+    const expected: string = 'node-hapi-typescript-template';
 
     chai.expect(config.get('name')).to.equal(expected);
   });
