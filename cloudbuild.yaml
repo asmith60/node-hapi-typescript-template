@@ -8,12 +8,15 @@ steps:
 - id: build
   name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'build']
-- id: pwd
-  name: 'alpine:latest'
-  args: ['pwd']
-- id: ls
-  name: 'alpine:latest'
-  args: ['ls -l']
-- id: cd
-  name: 'alpine:latest'
-  args: ['cd ..', '&&', 'ls -l']
+- id: unit-test
+  name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'test:junit']
+  waitFor: ['build']
+- id: lint-test
+  name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'test:lint']
+  waitFor: ['build']
+- id: security-test
+  name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'test:security']
+  waitFor: ['build']
