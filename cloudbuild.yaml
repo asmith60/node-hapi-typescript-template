@@ -20,3 +20,7 @@ steps:
   name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['run', 'test:security']
   waitFor: ['build']
+- id: release
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
+  args: ['run', 'release']
+  waitFor: ['unit-test', 'lint-test', 'security-test']
