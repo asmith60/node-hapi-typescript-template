@@ -6,17 +6,17 @@ steps:
   name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['install']
 - id: build
-  name: 'gcr.io/cloud-builders/npm'
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['run', 'build']
 - id: unit-test
-  name: 'gcr.io/cloud-builders/npm'
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['run', 'test:junit']
   waitFor: ['build']
 - id: lint-test
-  name: 'gcr.io/cloud-builders/npm'
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['run', 'test:lint']
   waitFor: ['build']
 - id: security-test
-  name: 'gcr.io/cloud-builders/npm'
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['run', 'test:security']
   waitFor: ['build']
