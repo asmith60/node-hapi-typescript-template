@@ -3,20 +3,20 @@ steps:
   name: 'gcr.io/cloud-builders/git'
   args: ['clone', 'https://github.com/asmith60/node-hapi-typescript-template.git']
 - id: install
-  name: 'node:10.9-alpine'
-  args: ['npm', 'install']
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
+  args: ['install']
 - id: build
-  name: 'node:10.9-alpine'
-  args: ['npm', 'run', 'build']
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
+  args: ['run', 'build']
 - id: unit-test
-  name: 'node:10.9-alpine'
-  args: ['npm', 'run', 'test:junit']
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
+  args: ['run', 'test:junit']
   waitFor: ['build']
 - id: lint-test
-  name: 'node:10.9-alpine'
-  args: ['npm', 'run', 'test:lint']
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
+  args: ['run', 'test:lint']
   waitFor: ['build']
 - id: security-test
-  name: 'node:10.9-alpine'
-  args: ['npm', 'run', 'test:security']
+  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
+  args: ['run', 'test:security']
   waitFor: ['build']
