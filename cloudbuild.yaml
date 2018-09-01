@@ -7,7 +7,7 @@ steps:
   args: ['pwd']
 - id: ls
   name: 'alpine:latest'
-  args: ['ls -al']
+  args: ['ls', '-al']
 - id: install
   name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['install']
