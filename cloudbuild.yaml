@@ -3,20 +3,20 @@ steps:
   name: 'gcr.io/cloud-builders/git'
   args: ['clone', 'https://github.com/asmith60/node-hapi-typescript-template.git']
 - id: install
-  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
-  args: ['install']
+  name: 'circleci/node:10.8'
+  args: ['npm', 'install']
 - id: build
-  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
-  args: ['run', 'build']
+  name: 'circleci/node:10.8'
+  args: ['npm', 'run', 'build']
 - id: unit-test
-  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
-  args: ['run', 'test:junit']
+  name: 'circleci/node:10.8'
+  args: ['npm', 'run', 'test:junit']
   waitFor: ['build']
 - id: lint-test
-  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
-  args: ['run', 'test:lint']
+  name: 'circleci/node:10.8'
+  args: ['npm', 'run', 'test:lint']
   waitFor: ['build']
 - id: security-test
-  name: 'gcr.io/cloud-builders/npm:node-10.3.0'
-  args: ['run', 'test:security']
+  name: 'circleci/node:10.8'
+  args: ['npm', 'run', 'test:security']
   waitFor: ['build']
