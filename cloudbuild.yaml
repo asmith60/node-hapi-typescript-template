@@ -11,3 +11,6 @@ steps:
 - id: pwd
   name: 'alpine:latest'
   args: ['pwd']
+- id: ls
+  name: 'alpine:latest'
+  args: ['ls -l']
