@@ -14,3 +14,6 @@ steps:
 - id: ls
   name: 'alpine:latest'
   args: ['ls -l']
+- id: cd
+  name: 'alpine:latest'
+  args: ['cd ..', '&&', 'ls -l']
