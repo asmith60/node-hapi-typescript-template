@@ -1,7 +1,9 @@
 steps:
 - id: unshallow
   name: 'gcr.io/cloud-builders/git'
-  args: ['fetch', '--unshallow']
+  args:
+  - 'fetch'
+  - '--unshallow'
 - id: install
   name: 'gcr.io/cloud-builders/npm:node-10.3.0'
   args: ['install']
