@@ -1,8 +1,6 @@
 # Node.js Hapi Typescript API Template
 
-[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=svg&circle-token=8ba515a469d30547cb26130b857ba1cc2f0ef4bf)](https://circleci.com/gh/asmith60/workflows/node-hapi-typescript-template)
-
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=svg&circle-token=8ba515a469d30547cb26130b857ba1cc2f0ef4bf)](https://circleci.com/gh/asmith60/workflows/node-hapi-typescript-template) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 This project is meant to be boilerplate for creating APIs in Node. This document will explain the overall structure of the project, as well as some of the design decisions. It will also highlight some of the processes and tools used in the project.
 
