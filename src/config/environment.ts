@@ -1,7 +1,7 @@
 import * as convict from 'convict';
 import { existsSync } from 'fs';
 
-const convictConfig: convict.Config = convict({
+const convictConfig: convict.Config<{}> = convict({
   env: {
     doc: 'Environment',
     format: String,
@@ -58,4 +58,4 @@ if (convictConfig.get('env') === 'development' && existsSync(convictConfig.get('
 
 convictConfig.validate({ allowed: 'strict' });
 
-export const config: convict.Config = convictConfig;
+export const config: convict.Config<{}> = convictConfig;

@@ -9,15 +9,15 @@ export const onPreResponse: ServerExtEventsRequestObject = {
       logger.trace('Full Error Object:');
       logger.trace(response);
       if (response.output && response.output.payload && Object.keys(response.output.payload).length !== 0) {
-        logger.error(`Error Payload:`);
+        logger.error('Error Payload:');
         logger.error(response.output.payload);
       }
       if (response.output && response.output.headers && Object.keys(response.output.headers).length !== 0) {
-        logger.error(`Error Headers:`);
+        logger.error('Error Headers:');
         logger.error(response.output.headers);
       }
       if (response.output && response.output.statusCode) {
-        logger.error(`Error Status Code:`);
+        logger.error('Error Status Code:');
         logger.error(response.output.statusCode);
       }
     } else {

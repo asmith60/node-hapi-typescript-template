@@ -1,8 +1,8 @@
-# Node Hapi.js Typescript Template
+# Node.js Hapi Typescript API Template
 
-[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=shield&circle-token=8ba515a469d30547cb26130b857ba1cc2f0ef4bf)](https://circleci.com/gh/asmith60/workflows/node-hapi-typescript-template) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![CircleCI](https://circleci.com/gh/asmith60/node-hapi-typescript-template.svg?style=svg&circle-token=8ba515a469d30547cb26130b857ba1cc2f0ef4bf)](https://circleci.com/gh/asmith60/workflows/node-hapi-typescript-template)
 
-This project is meant to be boilerplate for creating APIs in Node with [Typescript](https://www.typescriptlang.org/) and [Hapi](https://hapijs.com/). This document will explain the overall structure of the project, as well as some of the design decisions. It will also highlight some of the processes and tools used in the project.
+This project is meant to be boilerplate for creating APIs in Node. This document will explain the overall structure of the project, as well as some of the design decisions. It will also highlight some of the processes and tools used in the project.
 
 - [Structure](#structure)
   * [config](#config)
@@ -21,10 +21,14 @@ This project is meant to be boilerplate for creating APIs in Node with [Typescri
   * [Coverage](#coverage)
   * [Lint](#lint)
   * [Security](#security)
+- [Configuration](#configuration)
+  * [Environment Variables](#environment-variables)
 - [Local Development](#local-development)
 - [Logging](#logging)
 - [API Documentation](#api-documentation)
 - [Docker](#docker)
+- [Semantic Releases](#semantic-releases)
+  * [Commit Messages](#commit-messages)
 - [CI](#ci)
 - [IDE Integration](#ide-integration)
   * [Formatting](#formatting)
@@ -45,11 +49,11 @@ Much like a repository, but instead of abstracting persistence it abstracts an A
 
 ### [handler](src/handler)
 
-A handler is where the API request first lands when it hits the application. In this architecture handlers take the place of controllers. Ideally a handler only includes "application" logic. "Business" logic is the provenance of the service. The handler also serves as the "break" between the framework and our underlying code.
+A handler is where the API request first lands when it hits the application. In this architecture handlers take the place of controllers. Ideally a handler only includes "application" logic. "Business" logic is the provenance of the service. The handler also serves as the "break" between the framework and the underlying code.
 
 ### [hook](src/hook)
 
-Hooks are a framework feature of [Hapi](https://hapijs.com/). They allow us to intercept the request/response during its lifecycle and perform logic/modifications. In the context of this template they are used exclusively for logging. You can read more about them [here](https://hapijs.com/api#request-lifecycle)
+Hooks are a framework feature of [Hapi](https://hapijs.com/). They allow us to intercept the request/repsonse during its lifecycle and perform logic/modifications. In the context of this template they are used exclusively for logging. You can read more about them [here](https://hapijs.com/api#request-lifecycle)
 
 ### [lib](src/lib)
 
@@ -57,7 +61,7 @@ A sort of umbrella for shared modules of code that don't belong in any of the ot
 
 ### [model](src/model)
 
-There are two types of models for this template: [Joi](https://github.com/hapijs/joi) models and Typescript interfaces. [Joi](https://github.com/hapijs/joi) is a Node.js validation library written to be used with [Hapi](https://hapijs.com/). It is a very robust and convenient solution for request/response validation. Typescript interfaces describe the structure and type of entities in our code. There is some obvious overlap/duplication between the two tools, but that is balanced by the benefit they provide.
+There are two types of models for this template: [Joi](https://github.com/hapijs/joi) models and Typescript interfaces. [Joi](https://github.com/hapijs/joi) is a Node.js validation library written to be used with [Hapi](https://hapijs.com/). It is a very robust and convenient solution for request/response validation. Typescript interfaces describe the structure and type of entities in the code. There is some obvious overlap/duplication between the two tools, but that is balanced by the benefit they provide.
 
 ### [repository](src/repository)
 
@@ -97,7 +101,7 @@ npm run test:all
 npm run test
 ```
 
-Unit tests are located in the [test](test) directory. The [Mocha](https://mochajs.org/) test runner, [Chai](http://www.chaijs.com/) assertion library, and [Sinon](http://sinonjs.org/) mock/stub library are used to perform unit tests. [Mocha-webpack](https://github.com/zinserjan/mocha-webpack) library  is used to build/compile our tests. Its main configuration files are [mocha-webpack.opts](mocha-weback.opts) and [webpack.config.test.js](webpack.config.test.js).
+Unit tests are located in the [test](test) directory. The [Mocha](https://mochajs.org/) test runner, [Chai](http://www.chaijs.com/) assertion library, and [Sinon](http://sinonjs.org/) mock/stub library are used to perform unit tests. I use the [Mocha-webpack](https://github.com/zinserjan/mocha-webpack) library to build/compile tests. Its main configuration files are [mocha-webpack.opts](mocha-weback.opts) and [webpack.config.test.js](webpack.config.test.js).
 
 ### Coverage
 
@@ -105,7 +109,7 @@ Unit tests are located in the [test](test) directory. The [Mocha](https://mochaj
 npm run test:coverage
 ```
 
-The [Istanbul](https://istanbul.js.org/) library is used to calculate and check test coverage. Its main configuration file is [.nycrc](.nycrc). Istanbul is currently calculating and displaying test coverage, but not failing builds for low test coverage. To start failing builds for test coverage thresholds, toggle the `check-coverage` property in [.nycrc](.nycrc) to be `true`.
+The [Istanbul](https://istanbul.js.org/) library is used to calculate and check test coverage. Its main configuration file is [.nycrc](.nycrc). I have configured Istanbul to calculate and display test coverage, but not fail builds for low test coverage. To start failing builds for test coverage thresholds, toggle the `check-coverage` property in [.nycrc](.nycrc) to be `true`.
 
 ### Lint
 
@@ -121,7 +125,22 @@ npm run test:lint
 npm run test:security
 ```
 
-[Node Security Platform](https://nodesecurity.io/) is used to scan the application's external dependencies (node_modules) for known vulnerabilities. Its main configuration file is [.nsprc](.nsprc).
+[npm audit](https://docs.npmjs.com/cli/audit) is used to scan the application's external dependencies (node_modules) for known vulnerabilities. The test saves its results as a CI artifact, but _does not_ fail the build. This is due to a limitation of `npm audit` not allowing exceptions for vulnerabilities.
+
+## Configuration
+
+### Environment Variables
+
+| Key           | Description   | Default Value |
+| ------------- |:-------------:| --------------|
+| APP_NAME | Name of application | 'node-hapi-typescript-template' |
+| ENABLE_LOGS | Flag to enable/disbale logging | true |
+| ENV_FILE_PATH | Path to file with extra environmental configuration values - [reference](https://github.com/mozilla/node-convict#configloadfilefile-or-filearray) | _project_root_/env.json |
+| HOST | Hostname or IP address the server will listen on | '0.0.0.0' |
+| LOG_LEVEL | Log level for application ('info', 'debug', etc) | 'info' |
+| NODE_ENV | Environment where application is running | 'development' |
+| PORT | Port the server will listen on | 8000 |
+| PROTOCOL | PROTOCOL used, must be one of ['http', 'https', 'socket'] | 'http' |
 
 ## Local Development
 
@@ -139,7 +158,7 @@ npm run dev:watch
 
 ## Logging
 
-[Bunyan](https://github.com/trentm/node-bunyan) is used for logging. All logs are written to stdout. The log level is configured with the `LOG_LEVEL` environment variable (default is 'info'). There is also a convenience configuration to turn off logging completely (mostly used during testing to avoid spurious logging). Toggle this config by setting the `ENABLE_LOGS` environment variable to `true` or `false` (default is `true`). Bunyan formats logs into a JSON structure that is easily parsed by a log aggregator (SumoLogic). For local development, I have configured Bunyan to write logs in a more human readable format using [bunyan-debug-stream](https://github.com/benbria/bunyan-debug-stream). Logs are written in the human readable format if the `NODE_ENV` environment variable is set to `development` (the default) or `unit_test`, otherwise logs are written in JSON format.
+[Bunyan](https://github.com/trentm/node-bunyan) is used for logging. All logs are written to stdout. The log level is configured with the `LOG_LEVEL` environment variable (default is 'info'). There is also a convenience configuration to turn off logging completely (mostly used during testing to avoid spurious logging). Toggle this config by setting the `ENABLE_LOGS` environment variable to `true` or `false` (default is `true`). Bunyan formats logs into a JSON structure that is easily parsed by a log aggregator. For local development, I have configured Bunyan to write logs in a more human readable format using [bunyan-debug-stream](https://github.com/benbria/bunyan-debug-stream). Logs are written in the human readable format if the `NODE_ENV` environment variable is set to `development` (the default) or `unit_test`, otherwise logs are written in JSON format.
 
 ## API Documentation
 
@@ -147,7 +166,7 @@ The [hapi-swagger](https://github.com/glennjones/hapi-swagger) library is used t
 
 ## Docker
 
-Run application locally in [Docker](https://www.docker.com/)
+Run application locally in Docker
 
 ```bash
 npm run docker
@@ -166,6 +185,20 @@ npm run docker:push
 ```
 
 Must have Docker installed to run the above commands.
+
+## Semantic Releases
+
+This template follows [SemVer](https://semver.org/). The [semantic-release](https://github.com/semantic-release/semantic-release) library is used to manage version numbers, cut GitHub releases, and create/update the [changelog](CHANGELOG.md)
+
+### Commit Messages
+
+This template follows the commit message guidlines outlined by the [Angular project](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines). The commit message format determines the release number and is enforced with a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) (implemented via [husky](https://github.com/typicode/husky)). Here is an example of the release type that will be created based on the commit messages:
+
+| Commit message                                                                                                                                                                                   | Release type               |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| `fix(pencil): stop graphite breaking when too much pressure applied`                                                                                                                             | Patch Release              |
+| `feat(pencil): add 'graphiteWidth' option`                                                                                                                                                       | ~~Minor~~ Feature Release  |
+| `perf(pencil): remove graphiteWidth option`<br><br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.` | ~~Major~~ Breaking Release |
 
 ## CI
 

@@ -47,7 +47,7 @@ export class Rethrow extends ExtendedError {
     this.newStack = this.stack;
     const messageLines: number = (this.message.match(/\n/g) || []).length + 1;
     if (this.stack) {
-      this.stack = this.stack.split('\n').slice(0, messageLines + 1).join('\n') + '\n' + error.stack;
+      this.stack = `${this.stack.split('\n').slice(0, messageLines + 1).join('\n')}\n${error.stack}`;
     } else {
       this.stack = error.stack;
     }

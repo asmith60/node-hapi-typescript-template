@@ -29,12 +29,6 @@ async function main(): Promise<void> {
   }
 
   try {
-    setSignals(server);
-  } catch (e) {
-    throw new Rethrow('Problem setting system signals', e);
-  }
-
-  try {
     await server.register(plugins);
   } catch (e) {
     throw new Rethrow('Problem registering plugins', e);
@@ -56,6 +50,12 @@ async function main(): Promise<void> {
     await server.start();
   } catch (e) {
     throw new Rethrow('Problem starting server', e);
+  }
+
+  try {
+    setSignals(server);
+  } catch (e) {
+    throw new Rethrow('Problem setting system signals', e);
   }
 }
 

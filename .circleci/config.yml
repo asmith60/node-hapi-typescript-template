@@ -2,18 +2,20 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10.8
+      - image: circleci/node:10.15
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - run:
+          environment:
+            NODE_ENV: production
           command: npm run build
       - persist_to_workspace:
           root: .
@@ -22,7 +24,7 @@ jobs:
             - dist
   unit-test:
     docker:
-      - image: circleci/node:10.8
+      - image: circleci/node:10.15
     steps:
       - checkout
       - attach_workspace:
@@ -36,7 +38,7 @@ jobs:
           path: ./artifacts
   lint-test:
     docker:
-      - image: circleci/node:10.8
+      - image: circleci/node:10.15
     steps:
       - checkout
       - attach_workspace:
@@ -49,21 +51,22 @@ jobs:
           path: ./artifacts
   security-test:
     docker:
-      - image: circleci/node:10.8
+      - image: circleci/node:10.15
     steps:
       - checkout
       - attach_workspace:
           at: .
       - run:
           command: |
-            mkdir -p artifacts/json/nsp
-            npm --loglevel=silent run test:security -- --reporter json | tee artifacts/json/nsp/security-test-results.json
+            mkdir -p artifacts/json/security
+            npm run test:security | tee artifacts/json/security/security-test-results.json
       - store_artifacts:
           path: ./artifacts
   release:
     docker:
-      - image: circleci/node:10.8
+      - image: circleci/node:10.15
     steps:
+      - setup_remote_docker
       - checkout
       - attach_workspace:
           at: .
@@ -89,3 +92,6 @@ workflows:
             - unit-test
             - lint-test
             - security-test
+          filters:
+            branches:
+              only: master

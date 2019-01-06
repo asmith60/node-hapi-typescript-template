@@ -18,6 +18,7 @@
       "stopOnEntry": true,
       "timeout": 30000,
       "localRoot": "${workspaceRoot}",
+      "remoteRoot": "${workspaceRoot}",
       "outFiles": [
         "${workspaceRoot}/dist/*.js"
       ],

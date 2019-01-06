@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios';
-import { BaseGateway } from '@gateway/base/BaseGateway';
+import { BaseGateway } from './BaseGateway';
 import { logger } from '@lib/Logger';
 import { ExtendedError, Rethrow } from '@lib/ExtendedError';
 

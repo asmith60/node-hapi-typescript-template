@@ -6,17 +6,17 @@ import { config } from '@config/environment';
 export class Logger {
   protected bunyanLogger: bunyan;
 
-  constructor(env: string) {
+  constructor(env: string, logLevel: bunyan.LogLevel, appName: string) {
     let bunyanLoggerOptions: bunyan.LoggerOptions;
 
     if (env === 'development' || env === 'unit_test') {
       bunyanLoggerOptions = {
-        name: config.get('name'),
-        level: config.get('logLevel'),
+        name: appName,
+        level: logLevel,
         context: null,
         src: true,
         streams: [{
-          level: config.get('logLevel'),
+          level: logLevel,
           type: 'raw',
           stream: bunyanDebugStream({
             forceColor: true,
@@ -37,8 +37,8 @@ export class Logger {
       };
     } else {
       bunyanLoggerOptions = {
-        name: config.get('name'),
-        level: config.get('logLevel'),
+        name: appName,
+        level: logLevel,
         context: null
       };
     }
@@ -90,4 +90,4 @@ export class Logger {
   }
 }
 
-export const logger = new Logger(config.get('env'));
+export const logger = new Logger(config.get('env'), config.get('logLevel'), config.get('name'));

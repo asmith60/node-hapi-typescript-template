@@ -7,7 +7,7 @@ export const liveness: ServerRoute = {
   path: '/monitor/liveness',
   handler: monitor.liveness,
   options: {
-    description: `Tests the application's "liveness"`,
+    description: 'Tests the application\'s "liveness"',
     tags: ['api'],
     response: {
       schema: joiModels.monitorResponse
@@ -20,7 +20,7 @@ export const readiness: ServerRoute = {
   path: '/monitor/readiness',
   handler: monitor.readiness,
   options: {
-    description: `Tests the application's "readiness"`,
+    description: 'Tests the application\'s "readiness"',
     tags: ['api'],
     response: {
       schema: joiModels.monitorResponse
