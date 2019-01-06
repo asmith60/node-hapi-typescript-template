@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/asmith60/node-hapi-typescript-template/compare/1.1.0...1.2.0) (2019-01-06)
+
+
+### Features
+
+* updating packages ([ad5861d](https://github.com/asmith60/node-hapi-typescript-template/commit/ad5861d))
+
 # [1.1.0](https://github.com/asmith60/node-hapi-typescript-template/compare/1.0.0...1.1.0) (2018-08-17)
 
 

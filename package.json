@@ -1,6 +1,6 @@
 {
   "name": "node-hapi-typescript-template",
-  "version": "1.0.3",
+  "version": "1.2.0",
   "description": "Node.js API template using Hapi.js and Typescript",
   "main": "dist/main.bundle.js",
   "sideEffects": false,
