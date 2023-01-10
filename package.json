@@ -113,7 +113,7 @@
     "boom": "7.3.0",
     "bunyan": "2.0.2",
     "bunyan-debug-stream": "2.0.0",
-    "convict": "4.4.1",
+    "convict": "6.2.4",
     "deepmerge": "3.0.0",
     "hapi": "17.8.1",
     "hapi-swagger": "9.3.0",
