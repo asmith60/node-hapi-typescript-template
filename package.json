@@ -105,7 +105,7 @@
     "tslint-config-airbnb": "5.11.1",
     "typescript": "3.2.2",
     "webpack": "4.28.3",
-    "webpack-cli": "3.1.2",
+    "webpack-cli": "3.3.12",
     "webpack-node-externals": "1.7.2"
   },
   "dependencies": {
